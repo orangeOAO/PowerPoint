@@ -13,35 +13,25 @@ namespace PowerPoint.ShowModel
         public void Draw(Model model, System.Drawing.Graphics graphics)
         {
             var graphic = new WindowsGraphics(graphics);
-            model.Draw(graphic);
+            model.DrawShape(graphic);
         }
 
         //Press
         public void PressedPointer(Model model, Point point)
         {
             model.DetectInShape(point);
-            model._resizeShape = true;
         }
 
         //Move
         public void MovedPointer(Model model, Point point)
         {
-            if (model.DecideToChangeCursor(point))
-            {
-                model.ResizeShape(point);
-            }
-            else
-            {
-                model.MoveShape(point);
-            }
+            model.MoveShape(point);
         }
 
         //Release
         public void ReleasedPointer(Model model, Point point)
         {
             model._moveShape = false;
-            model._resizeShape = false;
-            model._record = false;
         }
 
         //GetState

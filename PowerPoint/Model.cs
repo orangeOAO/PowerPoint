@@ -23,7 +23,7 @@ namespace PowerPoint
         {
             Normal,
             Drawing,
-            Selected,
+            Select,
             Resize
         }
         public bool _record 
@@ -49,7 +49,7 @@ namespace PowerPoint
         }
 
         //CreateShape
-        public void CreateShape(ShapeType shapeType)
+        public virtual void CreateShape(ShapeType shapeType)
         {
             _shapesList.Add(_factory.CreateShape(shapeType));
             NotifyModelChanged();
@@ -57,13 +57,13 @@ namespace PowerPoint
         }
 
         //回傳目前的ShapesList
-        public BindingList<Shape> GetShapes()
+        public virtual BindingList<Shape> GetShapes()
         {
             return _shapesList;
         }
 
         //DeleteShape
-        public void DeleteShape(int index)
+        public virtual void DeleteShape(int index)
         {
             _shapesList.RemoveAt(index);
             NotifyModelChanged();
@@ -71,18 +71,19 @@ namespace PowerPoint
         }
 
         //DeleteSelectShape
-        public void DeleteSelectShape(int index)
+        public virtual void DeleteSelectShape()
         {
             if (_selectShapeIndex != -1)
             {
-                _shapesList.RemoveAt(index);
+                _shapesList.RemoveAt(_selectShapeIndex);
                 NotifyModelChanged();
             }
             _selectShapeIndex = -1;
+
         }
 
         //GetShapeCount
-        public int GetShapeCount()
+        public virtual int GetShapeCount()
         {
             return _shapesList.Count;
         }
@@ -97,7 +98,7 @@ namespace PowerPoint
         }
 
         //Press
-        public void PressedPointer(Point point, ShapeType type)
+        public virtual void PressedPointer(Point point, ShapeType type)
         {
             if (point.X > 0 && point.Y > 0)
             {
@@ -109,14 +110,14 @@ namespace PowerPoint
         }
 
         //MovePoint
-        public void MovedPointer(Point point)
+        public virtual void MovedPointer(Point point)
         {
             _hint.SetSecondPoint(point);
             NotifyModelChanged();
         }
 
         //Release Pointer
-        public void ReleasedPointer(Point point, ShapeType type)
+        public virtual void ReleasedPointer(Point point, ShapeType type)
         {
             Shape hint = _factory.CreateShape(type);
             hint.SetFirstPoint(_firstPoint);
@@ -127,59 +128,51 @@ namespace PowerPoint
         }
 
         //Clear
-        public void Clear()
+        public virtual void Clear()
         {
             _shapesList.Clear();
+            ClearSelectBox();
             NotifyModelChanged();
         }
 
-        //Draw
-        public void Draw(IGraphics graphics)
+        //DrawShape
+        public virtual void DrawShape(IGraphics graphics)
         {
 
             for (int count = _shapesList.Count - 1; count >= 0; count--)
             {
                 _shapesList[count].Draw(graphics);
-                if (_shapesList[count].IsShapeSelected)
+            }
+        }
+
+        //DrawSelected
+        public virtual void DrawBox(IGraphics graphics)
+        {
+
+            for (int count = _shapesList.Count - 1; count >= 0; count--)
+            {
+                if (count == _selectShapeIndex)
                 {
                     _shapesList[count].DrawBox(graphics);
                 }
             }
         }
 
-        //DrawBox
-        public void DrawBox()
-        {
-            NotifyModelChanged();
-        }
-
         //DrawHint
-        public void DrawHint(IGraphics graphics)
+        public virtual void DrawHint(IGraphics graphics)
         {
             _hint.Draw(graphics);
         }
 
-        //initialize
-        private void InitializeSelect()
-        {
-            foreach (var shape in _shapesList)
-            {
-                shape.IsShapeSelected = false;
-            }
-            _record = false;
-        }
-
         //DetectInShape
-        public void DetectInShape(Point mousePoint)
+        public virtual void DetectInShape(Point mousePoint)
         {
             _moveShape = false;
             _selectShapeIndex = -1;
-            InitializeSelect();
+            ClearSelectBox();
             for (int count = _shapesList.Count - 1; count >= 0 ; count--)
             {
-                _shapesList[count].Bounds(mousePoint);
-                
-                if (_shapesList[count].IsShapeSelected)
+                if (_shapesList[count].GetInShape(mousePoint))
                 {
                     _shapesList[count].SetTemporaryPoint();
                     _moveShape = true;
@@ -192,40 +185,52 @@ namespace PowerPoint
         }
 
         //ClearBox
-        public void ClearSelectBox()
+        public virtual void ClearSelectBox()
         {
             foreach (Shape shape in _shapesList)
             {
-                shape.ClearSelectBox();
+                shape.IsShapeSelected = false;
             }
             NotifyModelChanged();
         }
 
         //MoveShape
-        public void MoveShape(Point mousePoint)
+        public virtual void MoveShape(Point mousePoint)
         {
-            if (_moveShape && _selectShapeIndex !=-1)
+            if (_moveShape && _selectShapeIndex != -1)
             {
                 _shapesList[_selectShapeIndex].MoveCalculate(mousePoint);
                 NotifyModelChanged();
             }
         }
 
+        //setResizePoint
+        private void SetResizePoint(Shape shape, Point point)
+        {
+            shape.SetResizeShapePoint(point);
+        }
+
         //ResizeShape
-        public void ResizeShape(Point mousePoint)
+        public virtual void ResizeShape(Point mousePoint)
         {
             foreach (var shape in _shapesList)
             {
                 if (shape.IsShapeSelected && _resizeShape)
                 {
-                    shape.SetResizeShapePoint(mousePoint);
+                    SetResizePoint(shape, mousePoint);
                     NotifyModelChanged();
                 }
             }
         }
 
+        //GetInResizeShape
+        private bool GetInResizeShape(Shape shape, Point point)
+        {
+            return shape.GetInResizeShape(point);
+        }
+
         //ChangeCursor
-        public bool DecideToChangeCursor(Point mousePoint)
+        public virtual bool DecideToChangeCursor(Point mousePoint)
         {
             if (_record)
             {
@@ -233,7 +238,7 @@ namespace PowerPoint
             }
             foreach (var shape in _shapesList)
             {
-                if (shape.IsShapeSelected && shape.GetInResizeShape(mousePoint))
+                if (shape.IsShapeSelected && GetInResizeShape(shape, mousePoint))
                 {
                     if (_resizeShape)
                     {

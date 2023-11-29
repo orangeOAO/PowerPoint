@@ -14,6 +14,9 @@ C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\Microsof
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\Moq.dll
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\WindowsFormsApp1.exe
+C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\WindowsFormsApp1.exe.config
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\Castle.Core.xml
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
@@ -23,6 +26,3 @@ C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\System.T
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\obj\Debug\PTTests.csproj.CopyComplete
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\obj\Debug\PTTests.dll
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\obj\Debug\PTTests.pdb
-C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\WindowsFormsApp1.exe
-C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\WindowsFormsApp1.pdb
-C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\bin\Debug\WindowsFormsApp1.exe.config

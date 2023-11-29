@@ -1,0 +1,84 @@
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\modelTest.cs Line 151
+FeatureEnvyDetector	WARN	 PTTests.modelTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\modelTest.cs Line 164
+FeatureEnvyDetector	WARN	 PTTests.modelTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\modelTest.cs Line 176
+FeatureEnvyDetector	WARN	 PTTests.modelTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShowModelTest.cs Line 144
+FeatureEnvyDetector	WARN	 PowerPoint.ShowModel.Tests.PresentationModelTests envy Moq.Mock<T>
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		Object
+FeatureEnvyDetector	WARN		Object
+FeatureEnvyDetector	WARN		Setup
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShowModelTest.cs Line 158
+FeatureEnvyDetector	WARN	 PowerPoint.ShowModel.Tests.PresentationModelTests envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShowModelTest.cs Line 179
+FeatureEnvyDetector	WARN	 PowerPoint.ShowModel.Tests.PresentationModelTests envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShowModelTest.cs Line 190
+FeatureEnvyDetector	WARN	 PowerPoint.ShowModel.Tests.PresentationModelTests envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 32
+FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 40
+FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 48
+FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 56
+FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 64
+FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 72
+FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		IsAny

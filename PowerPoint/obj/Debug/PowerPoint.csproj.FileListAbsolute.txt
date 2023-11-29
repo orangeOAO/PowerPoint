@@ -1,10 +1,10 @@
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\bin\Debug\WindowsFormsApp1.exe.config
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\bin\Debug\WindowsFormsApp1.exe
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\bin\Debug\WindowsFormsApp1.pdb
-C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\PowerPoint.csproj.AssemblyReference.cache
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\PowerPoint.Form1.resources
-C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\PowerPoint.Properties.Resources.resources
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\PowerPoint.csproj.GenerateResource.cache
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\PowerPoint.csproj.CoreCompileInputs.cache
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\WindowsFormsApp1.exe
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\PowerPoint.csproj.AssemblyReference.cache

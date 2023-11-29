@@ -9,7 +9,11 @@ namespace PowerPoint.ShowModel
 {
     public class DrawingState : State
     {
-        private bool _isPressed = false;
+        public virtual bool _isPressed 
+        {
+            get;
+            set;
+        }
         internal ShapeType Type 
         {
             get;
@@ -24,7 +28,7 @@ namespace PowerPoint.ShowModel
         public void Draw(Model model, System.Drawing.Graphics graphics)
         {
             var graphic = new WindowsGraphics(graphics);
-            model.Draw(graphic);
+            model.DrawShape(graphic);
             if (_isPressed)
             {
                 model.DrawHint(graphic);

@@ -15,8 +15,10 @@ namespace PowerPoint
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(Model model)
         {
+            this._model = model;
+            _showModel = new ShowModel.ShowModel(_model);
             InitializeComponent();
             _dataGridView1.DataSource = _showModel.GetShapes();
             _showModel._modelChanged += HandleModelChanged;

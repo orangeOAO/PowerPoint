@@ -192,7 +192,7 @@
               <HashCode>LongParameterList.WindowsGraphics.DrawResizeHandles.Graphics graphics;float width;float height;float x1;float x2;</HashCode>
               <Severity>Warning</Severity>
               <Weight>5</Weight>
-              <Project>WindowsFormsApp1</Project>
+              <Project>PowerPoint</Project>
               <File>WindowsGraphics.cs</File>
               <Line>93</Line>
               <StartLine>0</StartLine>
@@ -208,7 +208,7 @@
               <HashCode>LongParameterList.WindowsGraphics.LongFunction.Graphics graphics;float width;float height;float x1;float x2;</HashCode>
               <Severity>Warning</Severity>
               <Weight>5</Weight>
-              <Project>WindowsFormsApp1</Project>
+              <Project>PowerPoint</Project>
               <File>WindowsGraphics.cs</File>
               <Line>109</Line>
               <StartLine>0</StartLine>
@@ -227,109 +227,144 @@
           <AnalysisFileManager>
             <AnalysisFiles>
               <AnalysisFile>
+                <RelativePath>modelTest.cs</RelativePath>
+                <ProjectName>PTTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Properties\AssemblyInfo.cs</RelativePath>
+                <ProjectName>PTTests</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>ShapeTest.cs</RelativePath>
+                <ProjectName>PTTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>ShowModelTest.cs</RelativePath>
+                <ProjectName>PTTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>StateTest.cs</RelativePath>
+                <ProjectName>PTTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>Circle.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Constant.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Factory.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Form1.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Form1.Designer.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Designer</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>IGraphics.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Line.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Model.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Panel2.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Program.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>ViewOrController</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Properties\AssemblyInfo.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Properties\Resources.Designer.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Designer</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Properties\Settings.Designer.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Designer</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Rectangle.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Shape.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>ShowModel\ShowModel.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>ShowModel\WindowsGraphics.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>State\DrawingState.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
-                <RelativePath>State\PointState.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <RelativePath>State\NormalState.cs</RelativePath>
+                <ProjectName>PowerPoint</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>State\ResizeState.cs</RelativePath>
+                <ProjectName>PowerPoint</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>State\SelectState.cs</RelativePath>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>State\State.cs</RelativePath>
-                <ProjectName>WindowsFormsApp1</ProjectName>
+                <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1565</ProductionLoc>
-          <TestLoc>0</TestLoc>
+          <ProductionLoc>1707</ProductionLoc>
+          <TestLoc>884</TestLoc>
         </CodeReview>
       </Data>
     </div>

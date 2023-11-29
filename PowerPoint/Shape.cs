@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace PowerPoint
 {
-    public abstract class Shape
+    public class Shape
     {
         protected string _shapeName = "";
         protected ShapeType _shapeType = new ShapeType();
@@ -47,12 +47,6 @@ namespace PowerPoint
             return Constant.LEFT + point.X + Constant.COMMA + point.Y + Constant.RIGHT;
         }
 
-        //notselect
-        public void ClearSelectBox()
-        {
-            IsShapeSelected = false;
-        }
-
         //point1
         public Point GetPoint1()
         {
@@ -66,7 +60,7 @@ namespace PowerPoint
         }
 
         //Bounds
-        public bool Bounds(Point mousePoint)
+        public bool GetInShape(Point mousePoint)
         {
             int left = Math.Min(_point1.X, _point2.X);
             int right = Math.Max(_point1.X, _point2.X);
@@ -96,22 +90,13 @@ namespace PowerPoint
         {
         }
 
-        public bool IsShapeSelected {
-            get;
-            set;
-        }
-
-        public bool ShouldBeResize
+        public virtual bool IsShapeSelected 
         {
             get;
             set;
         }
 
-        public Point _pointSelect 
-        {
-            get;
-            set;
-        }
+        private Point _pointSelect;
 
         ////ShapeName
         public string _shape 

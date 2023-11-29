@@ -15,10 +15,11 @@ namespace PowerPoint.ShowModel
     {
         public event Model.ModelChangedEventHandler _modelChanged;
         private State _currentState;
-        readonly Model _model = new Model();
+        readonly Model _model;
 
-        public ShowModel()
+        public ShowModel(Model model)
         {
+            _model = model;
             _model._modelChanged += HandleModelChanged;
             _currentState = new PointState();
 
@@ -114,19 +115,33 @@ namespace PowerPoint.ShowModel
 
         //DeleteSeleteShape
         public void DeleteSelectShape()
-        {
-            _model.DeleteSelectShape(_model._selectShapeIndex);
+        {  
+            _model.DeleteSelectShape();
         }
 
         //ChangeCursor
         public bool ChangeCursor(Point mousePoint)
         {
-            if (_model.DecideToChangeCursor(mousePoint))
+            var change = _model.DecideToChangeCursor(mousePoint);
+            if (change)
             {
-                State state = new ResizeState();
-                _currentState = state;
+                _currentState = new ResizeState();
             }
-            return _model.DecideToChangeCursor(mousePoint);
+            else
+            {
+                var selectedShape = _model.GetShapes().FirstOrDefault(shape => shape.IsShapeSelected);
+                if (selectedShape != null)
+                {
+                    _currentState = new SelectState();
+                }
+            }
+            return change;
+        }
+
+        //GetCurrnentState
+        public Model.ModelState GetCurrentState()
+        {
+            return _currentState.GetState();
         }
     }
 }

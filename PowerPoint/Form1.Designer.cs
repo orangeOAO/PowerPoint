@@ -286,7 +286,8 @@ namespace PowerPoint
         private System.Windows.Forms.ToolStripMenuItem _help;
         private System.Windows.Forms.ToolStripMenuItem _aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStrip _toolStrip1;
-        private ShowModel.ShowModel _showModel = new ShowModel.ShowModel();
+        private ShowModel.ShowModel _showModel;
+        private Model _model;
         private System.Windows.Forms.ToolStripButton _circleButton;
         private System.Windows.Forms.ToolStripButton _lineButton;
         private System.Windows.Forms.ToolStripButton _rectangleButton;

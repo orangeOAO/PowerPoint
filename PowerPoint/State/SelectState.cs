@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PowerPoint.ShowModel
 {
-    public class ResizeState : State
+    public class SelectState : State
     {
         //Draw
         public void Draw(Model model, System.Drawing.Graphics graphics)
@@ -20,26 +20,26 @@ namespace PowerPoint.ShowModel
         //Press
         public void PressedPointer(Model model, Point point)
         {
-            model._resizeShape = true;
+            model.DetectInShape(point);
         }
 
         //Move
         public void MovedPointer(Model model, Point point)
         {
-            model.ResizeShape(point);
+
+            model.MoveShape(point);
         }
 
         //Release
         public void ReleasedPointer(Model model, Point point)
         {
-            model._resizeShape = false;
-            model._record = false;
+            model._moveShape = false;
         }
 
         //GetState
         public Model.ModelState GetState()
         {
-            return Model.ModelState.Resize;
+            return Model.ModelState.Select;
         }
     }
 }
