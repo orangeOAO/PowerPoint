@@ -23,7 +23,7 @@ namespace PowerPoint
         private readonly Factory _factory = new Factory();
         private CommandStart _commandManager;
         private State _currentState;
-
+        private bool _isPress;
         private int _canvasWidth;
         Shape _hint;
         private Point _firstPoint = new Point(0, 0);
@@ -66,6 +66,7 @@ namespace PowerPoint
         {
             _currentState = state;
             NotifyStateChanged(_currentState);
+            Debug.WriteLine(_currentState);
         }
 
         //CreateShape
@@ -87,13 +88,13 @@ namespace PowerPoint
         //DeleteShape
         public virtual void DeleteShape(int index)
         {
-            NotifyModelChanged();
             if (index != -1)
             {
                 //_commandManager.Execute(new DeleteCommand(this, _shapesList[index], index));
                 _shapesList.RemoveAt(index);
             }
             _selectShapeIndex = -1;
+            NotifyModelChanged();
         }
         //DeleteSelectShape
         public virtual void DeleteSelectShape()
@@ -263,7 +264,7 @@ namespace PowerPoint
         {
             foreach (var shape in _shapesList)
             {
-                if (shape.IsShapeSelected && GetInResizeShape(shape, mousePoint))
+                if (GetInResizeShape(shape, mousePoint))
                 {
                     return true;
                 }
@@ -332,12 +333,14 @@ namespace PowerPoint
         //mouseUP
         public void MouseUp(Point point)
         {
+            _isPress = false;
             _currentState.ReleasedPointer(this,point);
         }
 
         //mouseUP
         public void MouseDown(Point point)
         {
+            _isPress = true;
             _currentState.PressedPointer(this, point);
             
         }
@@ -345,7 +348,7 @@ namespace PowerPoint
         //mouseUP
         public void MouseMove(Point point)
         {
-            _currentState.MovedPointer(this, point);
+            _currentState.MovedPointer(this, point, _isPress);
         }
 
         //mouseDraw

@@ -16,7 +16,7 @@ namespace PowerPoint.IState
         void PressedPointer(Model model, Point point);
 
         //Move
-        void MovedPointer(Model model, Point point);
+        void MovedPointer(Model model, Point point, bool press);
 
         //Release
         void ReleasedPointer(Model model, Point point);

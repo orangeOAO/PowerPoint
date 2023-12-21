@@ -25,16 +25,20 @@ namespace PowerPoint.IState
         }
 
         //Move
-        public void MovedPointer(Model model, Point point)
+        public void MovedPointer(Model model, Point point,bool press)
         {
             //model.SetState(new ResizeState());
             //Debug.WriteLine("OAO");
             if (model.ChangeToResizeMode(point))
             {
+                model.SetState(new ResizeState());
             }
             else
             {
-                model.MoveShape(point);
+                if (press)
+                {
+                    model.MoveShape(point);
+                }
             }
         }
 

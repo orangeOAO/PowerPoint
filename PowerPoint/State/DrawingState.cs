@@ -44,9 +44,9 @@ namespace PowerPoint.IState
         }
 
         //Move
-        public void MovedPointer(Model model, Point point)
+        public void MovedPointer(Model model, Point point, bool press)
         {
-            if (_isPressed)
+            if (press)
             {
                 model.MovedPointer(point);
             }

@@ -10,7 +10,6 @@ namespace PowerPoint.IState
 {
     public class ResizeState : State
     {
-        private bool _isPress;
         //Draw
         public void Draw(Model model, System.Drawing.Graphics graphics)
         {
@@ -22,26 +21,26 @@ namespace PowerPoint.IState
         //Press
         public void PressedPointer(Model model, Point point)
         {
-            _isPress = true;
         }
 
         //Move
-        public void MovedPointer(Model model, Point point)
+        public void MovedPointer(Model model, Point point, bool press)
         {
-            //if (!model.DecideToChangeCursor(point))
-            //{
-            //    model.SetState(new SelectState());
-            //}
-            if (_isPress)
+            if (press)
             {
                 model.ResizeShape(point);
             }
+            else
+            {
+                model.SetState(new SelectState());
+            }
+            
         }
 
         //Release
         public void ReleasedPointer(Model model, Point point)
         {
-            _isPress = false;
+            
         }
 
         //GetState

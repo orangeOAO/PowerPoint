@@ -38,7 +38,6 @@ namespace PowerPoint.ShowModel
         public void SetState(State state)
         {
             _model.SetState(state);
-            Debug.WriteLine(state);
         }
 
         /// cursor
@@ -72,6 +71,10 @@ namespace PowerPoint.ShowModel
                 PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_RECTANGLE_CHECKED));
                 PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_CIRCLE_CHECKED));
                 PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_MOUSE_CHECKED));
+            }
+            if (_isButtonChecked[(int)ShapeType.ARROW])
+            {
+                SetState(new PointState());
             }
         }
 
@@ -112,12 +115,15 @@ namespace PowerPoint.ShowModel
         public void ReleasedPointer(Point point)
         {
             _model.MouseUp( point);
-            for (int i = 0; i < _isButtonChecked.Length; i++)
+            if (!_isButtonChecked[(int)ShapeType.ARROW])
             {
-                _isButtonChecked[i] = false;
+                for (int i = 0; i < _isButtonChecked.Length; i++)
+                {
+                    _isButtonChecked[i] = false;
+                }
+                _isButtonChecked[(int)ShapeType.ARROW] = true;
+                HandlePropertyChanged();
             }
-            _isButtonChecked[(int)ShapeType.ARROW] = true;
-            HandlePropertyChanged();
         }
 
         //Clear
