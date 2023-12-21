@@ -47,6 +47,11 @@ namespace PowerPoint
             return Constant.LEFT + point.X + Constant.COMMA + point.Y + Constant.RIGHT;
         }
 
+        public virtual bool IsShapeSelected {
+            get;
+            set;
+        }
+
         //point1
         public Point GetPoint1()
         {
@@ -90,11 +95,7 @@ namespace PowerPoint
         {
         }
 
-        public virtual bool IsShapeSelected 
-        {
-            get;
-            set;
-        }
+        
 
         private Point _pointSelect;
 
@@ -157,6 +158,16 @@ namespace PowerPoint
             _point2.Y = _temporaryPoint2.Y + (mousePoint.Y - _pointSelect.Y);
         }
 
+        /// scale
+        /// </summary>
+        public void Scale(float scale)
+        {
+            _point1.X = (int)(_point1.X * scale);
+            _point1.Y = (int)(_point1.Y * scale);
+            _point2.X = (int)(_point2.X * scale);
+            _point2.Y = (int)(_point2.Y * scale);
+        }
+
         //Resize
         public void SetResizeShapePoint(Point mousePoint)
         {
@@ -178,8 +189,9 @@ namespace PowerPoint
     }
     public enum ShapeType
     {
+        CIRCLE,
         LINE,
         RECTANGLE,
-        CIRCLE
+        ARROW
     }
 }

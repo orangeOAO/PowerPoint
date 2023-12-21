@@ -4,8 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PowerPoint.ShowModel;
 
-namespace PowerPoint.ShowModel
+namespace PowerPoint.IState
 {
     public class PointState : State
     {
@@ -20,18 +21,20 @@ namespace PowerPoint.ShowModel
         public void PressedPointer(Model model, Point point)
         {
             model.DetectInShape(point);
+            if (model._selectShapeIndex != - 1)
+            {
+                model.SetState(new SelectState());
+            }
         }
 
         //Move
         public void MovedPointer(Model model, Point point)
         {
-            model.MoveShape(point);
         }
 
         //Release
         public void ReleasedPointer(Model model, Point point)
         {
-            model._moveShape = false;
         }
 
         //GetState

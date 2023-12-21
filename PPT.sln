@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.34031.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTTests", "PTTests\PTTests.csproj", "{42635124-421C-490A-A3F0-63DC1D1CA8E5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPoint", "PowerPoint\PowerPoint.csproj", "{823B4B17-9FD4-4F81-B91C-2E034AF75F49}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{42635124-421C-490A-A3F0-63DC1D1CA8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42635124-421C-490A-A3F0-63DC1D1CA8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42635124-421C-490A-A3F0-63DC1D1CA8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42635124-421C-490A-A3F0-63DC1D1CA8E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{823B4B17-9FD4-4F81-B91C-2E034AF75F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{823B4B17-9FD4-4F81-B91C-2E034AF75F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{823B4B17-9FD4-4F81-B91C-2E034AF75F49}.Release|Any CPU.ActiveCfg = Release|Any CPU

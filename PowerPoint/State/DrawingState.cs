@@ -4,8 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PowerPoint.ShowModel;
 
-namespace PowerPoint.ShowModel
+namespace PowerPoint.IState
 {
     public class DrawingState : State
     {

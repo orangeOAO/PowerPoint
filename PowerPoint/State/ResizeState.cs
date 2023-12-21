@@ -4,11 +4,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PowerPoint.ShowModel;
 
-namespace PowerPoint.ShowModel
+namespace PowerPoint.IState
 {
     public class ResizeState : State
     {
+        private bool _isPress;
         //Draw
         public void Draw(Model model, System.Drawing.Graphics graphics)
         {
@@ -20,20 +22,26 @@ namespace PowerPoint.ShowModel
         //Press
         public void PressedPointer(Model model, Point point)
         {
-            model._resizeShape = true;
+            _isPress = true;
         }
 
         //Move
         public void MovedPointer(Model model, Point point)
         {
-            model.ResizeShape(point);
+            //if (!model.DecideToChangeCursor(point))
+            //{
+            //    model.SetState(new SelectState());
+            //}
+            if (_isPress)
+            {
+                model.ResizeShape(point);
+            }
         }
 
         //Release
         public void ReleasedPointer(Model model, Point point)
         {
-            model._resizeShape = false;
-            model._record = false;
+            _isPress = false;
         }
 
         //GetState
