@@ -14,17 +14,19 @@ namespace PowerPoint
 {
     public class Model
     {
-        public event CommandStart.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
+        public event CommandManager.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
         public delegate void StateChangedEventHandler(State state);
         public event StateChangedEventHandler _stateChanged;
         private BindingList<Shape> _shapesList = new BindingList<Shape>();
         private readonly Factory _factory = new Factory();
-        private CommandStart _commandManager;
+        private CommandManager _commandManager;
         private State _currentState;
         private bool _isPress;
         private int _canvasWidth;
+        private Point _lastPoint;
+        private Point _startPoint;
         Shape _hint;
         private Point _firstPoint = new Point(0, 0);
         public enum ModelState
@@ -45,8 +47,8 @@ namespace PowerPoint
 
         public Model()
         {
-            //_commandManager = new CommandStart();
-            //_commandManager._undoRedoHistoryChanged += SetUndoRedoHistory;
+            _commandManager = new CommandManager();
+            _commandManager._undoRedoHistoryChanged += SetUndoRedoHistory;
             _selectShapeIndex = -1;
             _currentState = new PointState();
         }
@@ -65,7 +67,7 @@ namespace PowerPoint
         {
             var shape = _factory.CreateShape(shapeType);
             _shapesList.Add(shape);
-            //HandleInsertShape(shape);
+            HandleCreateShape(shape);
             NotifyModelChanged();
 
         }
@@ -77,11 +79,18 @@ namespace PowerPoint
         }
 
         //DeleteShape
+        public virtual void DeleteShapeByUndo(int index)
+        {
+            _shapesList.RemoveAt(index);
+            NotifyModelChanged();
+        }
+
+        //DeleteShape
         public virtual void DeleteShape(int index)
         {
             if (index != -1)
             {
-                //_commandManager.Execute(new DeleteCommand(this, _shapesList[index], index));
+                _commandManager.Execute(new DeleteCommand(this, _shapesList[index], index));
                 _shapesList.RemoveAt(index);
             }
             _selectShapeIndex = -1;
@@ -92,12 +101,11 @@ namespace PowerPoint
         {
             if (_selectShapeIndex != -1)
             {
-                //_commandManager.Execute(new DeleteCommand(this, _shapesList[_selectShapeIndex], _selectShapeIndex));
+                _commandManager.Execute(new DeleteCommand(this, _shapesList[_selectShapeIndex], _selectShapeIndex));
                 _shapesList.RemoveAt(_selectShapeIndex);
                 NotifyModelChanged();
             }
             _selectShapeIndex = -1;
-
         }
 
         //GetShapeCount
@@ -150,6 +158,7 @@ namespace PowerPoint
             hint.SetFirstPoint(_firstPoint);
             hint.SetSecondPoint(point);
             _shapesList.Add(hint);
+            HandleDrawShape(hint);
             NotifyModelChanged();
         }
 
@@ -221,11 +230,18 @@ namespace PowerPoint
         //MoveShape
         public virtual void MoveShape(Point mousePoint)
         {
-            if (_moveShape && _selectShapeIndex != -1)
+            if (_selectShapeIndex != -1)
             {
                 _shapesList[_selectShapeIndex].MoveCalculate(mousePoint);
                 NotifyModelChanged();
             }
+        }
+
+        //MoveShapeByBias
+        public virtual void MoveShapeByBias(Size bias, int index)
+        {
+            _shapesList[index].MoveShapeByBias(bias);
+            NotifyModelChanged();
         }
 
         //setResizePoint
@@ -276,31 +292,31 @@ namespace PowerPoint
         }
 
         //// handle
-        //public virtual void HandleInsertShape(Shape shape)
-        //{
-        //    _commandManager.Execute(new AddCommand(this, shape, _shapesList.Count - 1));
-        //}
+        public virtual void HandleCreateShape(Shape shape)
+        {
+            _commandManager.Execute(new AddCommand(this, shape, _shapesList.Count - 1));
+        }
 
         //// handle
-        //public virtual void HandleMoveShape(int index, Size bias)
-        //{
-        //    _commandManager.Execute(new MoveCommand(this, index, bias));
-        //}
+        public virtual void HandleMoveShape(int index, Size bias)
+        {
+            _commandManager.Execute(new MoveCommand(this, index, bias));
+        }
 
         //// handle
-        //public virtual void HandleDrawShape(Shape shape)
-        //{
-        //    _commandManager.Execute(new DrawingCommand(this, shape, _shapesList.Count - 1));
-        //}
+        public virtual void HandleDrawShape(Shape shape)
+        {
+            _commandManager.Execute(new DrawingCommand(this, shape, _shapesList.Count - 1));
+        }
 
         ////set
-        //public void SetUndoRedoHistory(bool isUndo, bool isRedo)
-        //{
-        //    if (_undoRedoHistoryChanged != null)
-        //    {
-        //        _undoRedoHistoryChanged(isUndo, isRedo);
-        //    }
-        //}
+        public void SetUndoRedoHistory(bool isUndo, bool isRedo)
+        {
+            if (_undoRedoHistoryChanged != null)
+            {
+                _undoRedoHistoryChanged(isUndo, isRedo);
+            }
+        }
 
         // undo
         public virtual void Undo()
@@ -315,7 +331,7 @@ namespace PowerPoint
         }
 
         //insert
-        public virtual void InsertShapeByShape(Shape shape, int index)
+        public virtual void InsertShape(Shape shape, int index)
         {
             _shapesList.Insert(index, shape);
             NotifyModelChanged();
@@ -326,6 +342,12 @@ namespace PowerPoint
         {
             _isPress = false;
             _currentState.ReleasedPointer(this,point);
+            _lastPoint = point;
+            if (GetState() == ModelState.Select && _selectShapeIndex !=-1)
+            {
+                Size bias = new Size(_lastPoint.X - _startPoint.X, _lastPoint.Y - _startPoint.Y);
+                HandleMoveShape(_selectShapeIndex, bias);
+            }
         }
 
         //mouseUP
@@ -333,7 +355,7 @@ namespace PowerPoint
         {
             _isPress = true;
             _currentState.PressedPointer(this, point);
-            
+            _startPoint = point;
         }
 
         //mouseUP
@@ -349,7 +371,7 @@ namespace PowerPoint
         }
 
         //Get
-        public Model.ModelState GetState()
+        public virtual Model.ModelState GetState()
         {
             return _currentState.GetState();
         }

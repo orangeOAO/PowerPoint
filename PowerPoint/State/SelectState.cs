@@ -6,6 +6,7 @@ namespace PowerPoint.IState
 {
     public class SelectState : State
     {
+        
         //Draw
         public void Draw(Model model, System.Drawing.Graphics graphics)
         {
@@ -45,6 +46,8 @@ namespace PowerPoint.IState
         //Release
         public void ReleasedPointer(Model model, Point point)
         {
+            //_lastPoint = point;
+            //model.HandleMoveShape(model._selectShapeIndex, new Size(_lastPoint.X-_startPoint.X, _lastPoint.Y-_lastPoint.Y));
         }
 
         //GetState

@@ -17,7 +17,7 @@ namespace PowerPoint.ShowModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public event Model.ModelChangedEventHandler _modelChanged;
-        public event CommandStart.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
+        public event CommandManager.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
         public delegate void CursorChangedEventHandler(Cursor cursor);
         public event CursorChangedEventHandler _cursorChanged;
         readonly bool[] _isButtonChecked = { false, false, false, false };
@@ -179,12 +179,6 @@ namespace PowerPoint.ShowModel
             _model.ResizeCanvas(width, height);
         }
 
-        //GetCurrnentState
-        //public Model.ModelState GetCurrentState()
-        //{
-        //    return _model.
-        //}
-
         /// undo
         /// </summary>
         public void Undo()
@@ -203,10 +197,10 @@ namespace PowerPoint.ShowModel
         /// handle
         public void HandleUndoRedoHistoryChanged(bool isundo, bool isredo)
         {
-            //if (_undoRedoHistoryChanged != null)
-            //{
-            //    _undoRedoHistoryChanged(isundo, isredo);
-            //}
+            if (_undoRedoHistoryChanged != null)
+            {
+                _undoRedoHistoryChanged(isundo, isredo);
+            }
         }
 
         public bool IsLineButtonChecked {

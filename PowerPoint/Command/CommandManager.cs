@@ -3,14 +3,12 @@ using System.Diagnostics;
 
 namespace PowerPoint.Command
 {
-    public class CommandStart
+    public class CommandManager
     {
         public delegate void HandleUndoRedoHistoryEventHandler(bool isUndo, bool isRedo);
-#pragma warning disable IDE1006 // Naming Styles
         public event HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
-#pragma warning restore IDE1006 // Naming Styles
 
-        public CommandStart()
+        public CommandManager()
         {
             _commandHistory = new List<Command>();
             _redoHistory = new List<Command>();
@@ -26,9 +24,7 @@ namespace PowerPoint.Command
             _redoHistory.Clear();
             if (_undoRedoHistoryChanged != null)
             {
-#pragma warning disable IDE1005 // Delegate invocation can be simplified.
                 _undoRedoHistoryChanged(true, false);
-#pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
         }
 

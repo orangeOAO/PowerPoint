@@ -8,7 +8,7 @@ namespace PowerPoint.Command
         {
             _model = model;
             _index = index;
-            //_bias = bias;
+            _bias = bias;
         }
 
 
@@ -16,7 +16,7 @@ namespace PowerPoint.Command
         /// </summary>
         public void Execute()
         {
-            //_model.MoveShapeByBias(_bias, _index);
+            _model.MoveShapeByBias(_bias, _index);
         }
 
 
@@ -24,11 +24,11 @@ namespace PowerPoint.Command
         /// </summary>
         public void Unexecute()
         {
-            //_model.MoveShapeByBias(new Size(-1 * _bias.Width, -1 * _bias.Height), _index);
+            _model.MoveShapeByBias(new Size(-1 * _bias.Width, -1 * _bias.Height), _index);
         }
 
         readonly Model _model;
         readonly int _index;
-        //private Size _bias;
+        private Size _bias;
     }
 }

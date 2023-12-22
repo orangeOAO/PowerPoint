@@ -14,7 +14,7 @@
         /// </summary>
         public void Execute()
         {
-            _model.InsertShapeByShape(_shape, _index);
+            _model.InsertShape(_shape, _index);
         }
 
 
@@ -22,7 +22,7 @@
         /// </summary>
         public void Unexecute()
         {
-            _model.DeleteShape(_model.GetShapes().Count - 1);
+            _model.DeleteShapeByUndo(_model.GetShapes().Count - 1);
         }
 
         readonly Model _model;

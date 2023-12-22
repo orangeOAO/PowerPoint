@@ -52,11 +52,12 @@
     </Compile>
     <Compile Include="Circle.cs" />
     <Compile Include="Command\AddCommand.cs" />
-    <Compile Include="Command\CommandStart.cs" />
+    <Compile Include="Command\CommandManager.cs" />
     <Compile Include="Command\Commands.cs" />
     <Compile Include="Command\DeleteCommand.cs" />
     <Compile Include="Command\DrawingCommand.cs" />
     <Compile Include="Command\MoveCommand.cs" />
+    <Compile Include="Command\ResizeCommand.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Form1.cs">

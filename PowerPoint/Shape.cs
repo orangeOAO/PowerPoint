@@ -149,17 +149,28 @@ namespace PowerPoint
         }
 
         //MoveCalculate
-        public void MoveCalculate(Point mousePoint)
+        public Size MoveCalculate(Point mousePoint)
         {
-            //Debug.WriteLine($"MouseCoordinate:{_point1.X},{_point1.Y}");
+            Size bias = new Size(mousePoint.X - _pointSelect.X, mousePoint.Y - _pointSelect.Y);
             _point1.X = _temporaryPoint1.X + (mousePoint.X - _pointSelect.X);
             _point1.Y = _temporaryPoint1.Y + (mousePoint.Y - _pointSelect.Y);
             _point2.X = _temporaryPoint2.X + (mousePoint.X - _pointSelect.X);
             _point2.Y = _temporaryPoint2.Y + (mousePoint.Y - _pointSelect.Y);
+            return bias;
+            
+        }
+
+        //MoveBybias
+        public virtual void MoveShapeByBias(Size bias)
+        {
+            _point1.X = _point1.X + bias.Width;
+            _point1.Y = _point1.Y + bias.Height;
+            _point2.X = _point2.X + bias.Width;
+            _point2.Y = _point2.Y + bias.Height;
+
         }
 
         /// scale
-        /// </summary>
         public void Scale(float scale)
         {
             _point1.X = (int)(_point1.X * scale);
