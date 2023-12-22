@@ -5,8 +5,10 @@ using PowerPoint;
 using System.Windows.Forms;
 using System;
 using PowerPoint.IState;
+using System.Collections.Generic;
+using PowerPoint.ShowModel;
 
-namespace PowerPoint.ShowModel.Tests
+namespace PPTests
 {
     [TestClass]
     public class PresentationModelTests
@@ -34,17 +36,57 @@ namespace PowerPoint.ShowModel.Tests
             Assert.IsTrue(isCalled);
         }
 
-        ////test
-        //[TestMethod]
-        //public void SetState()
-        //{
-        //    State _state = new DrawingState(ShapeType.RECTANGLE);
-        //    _showModel.SetState(_state);
-        //    Assert.AreEqual(Model.ModelState.Drawing, _showModel.GetCurrentState());
-        //    _state = new PointState();
-        //    _showModel.SetState(_state);
-        //    Assert.AreEqual(Model.ModelState.Normal, _showModel.GetCurrentState());
-        //}
+        // test
+        [TestMethod]
+        public void HandlePropertyChangedTest()
+        {
+            // 创建对象实例
+ 
+
+            // 设置 _isButtonChecked 数组
+            _privateShowModel.SetField("_isButtonChecked", new bool[4] { false, false, false, true }); // 假设 ShapeType.ARROW 对应索引 3
+
+            // 订阅 PropertyChanged 事件并记录触发次数和参数
+            var propertyChangedEvents = new List<string>();
+            _showModel.PropertyChanged += (sender, e) =>
+            {
+                propertyChangedEvents.Add(e.PropertyName);
+            };
+
+            // 调用方法
+            _showModel.HandlePropertyChanged();
+
+            // 验证 PropertyChanged 是否触发了四次
+            Assert.AreEqual(4, propertyChangedEvents.Count);
+            Assert.IsTrue(propertyChangedEvents.Contains(Constant.IS_LINE_CHECKED));
+            Assert.IsTrue(propertyChangedEvents.Contains(Constant.IS_RECTANGLE_CHECKED));
+            Assert.IsTrue(propertyChangedEvents.Contains(Constant.IS_CIRCLE_CHECKED));
+            Assert.IsTrue(propertyChangedEvents.Contains(Constant.IS_MOUSE_CHECKED));
+        }
+
+        //test
+        [TestMethod]
+        [DataRow(ShapeType.LINE)]
+        [DataRow(ShapeType.CIRCLE)]
+        [DataRow(ShapeType.ARROW)]
+        [DataRow(ShapeType.RECTANGLE)]
+        public void SetState(ShapeType shapetype)
+        {
+            bool isCalled = false;
+            _showModel._cursorChanged += (cursorType) => { isCalled = true; };
+            _showModel.HandleStateChange(new SelectState());
+            Assert.IsTrue(isCalled);
+            isCalled = false;
+            _showModel.HandleStateChange(new PointState());
+            Assert.IsTrue(isCalled);
+            isCalled = false;
+            _showModel.HandleStateChange(new DrawingState(shapetype));
+            Assert.IsTrue(isCalled);
+            isCalled = false;
+            _showModel.HandleStateChange(new ResizeState());
+            Assert.IsTrue(isCalled);
+            isCalled = false;
+        }
 
         //test
         [TestMethod]
@@ -95,33 +137,15 @@ namespace PowerPoint.ShowModel.Tests
         [TestMethod]
         public void HandleButtonClickTest()
         {
-            ToolStripButton _lineButton = new ToolStripButton();
-            ToolStripButton _circleButton = new ToolStripButton();
-            ToolStripButton _rectangleButton = new ToolStripButton();
-            ToolStripButton _selectButton = new ToolStripButton();
-            ToolStripButton[] buttonArray = {_lineButton, _rectangleButton, _circleButton, _selectButton };
-            //_showModel.HandleButtonClick(buttonArray,3);
 
-            Assert.AreEqual(true, buttonArray[3].Checked);
-        }
+            _showModel.HandleButtonClick(0);
+            var button = (bool[])_privateShowModel.GetField("_isButtonChecked");
+            Assert.AreEqual(true, button[0]);
+            _showModel.HandleButtonClick((int)ShapeType.ARROW);
+            button = (bool[])_privateShowModel.GetField("_isButtonChecked");
+            Assert.AreEqual(true, button[(int)ShapeType.ARROW]);
 
-        // test
-        [TestMethod]
-        public void ReleaseButtonClickTest()
-        {
-            ToolStripButton _lineButton = new ToolStripButton();
-            ToolStripButton _circleButton = new ToolStripButton();
-            ToolStripButton _rectangleButton = new ToolStripButton();
-            ToolStripButton _selectButton = new ToolStripButton();
-            _lineButton.Checked = true;
-            ToolStripButton[] buttonArray = { _lineButton, _rectangleButton, _circleButton, _selectButton };
-            //_showModel.ReleaseButtonClick(buttonArray);
 
-            foreach(var button in buttonArray)
-            {
-                Assert.AreEqual(false, button.Checked);
-            }
-            
         }
 
         //test
@@ -189,6 +213,34 @@ namespace PowerPoint.ShowModel.Tests
             _showModel.ReleasedPointer(point);
             mockState.Object.ReleasedPointer(_mockModel.Object, point);
             mockState.Verify(m => m.ReleasedPointer(It.IsAny<Model>(), It.IsAny<Point>()), Times.Once);
+            
+            bool[] test = { false, false, true, false};
+            _privateShowModel.SetField("_isButtonChecked",test);
+            _showModel.ReleasedPointer(point);
+            var button = (bool[])_privateShowModel.GetField("_isButtonChecked");
+            Assert.IsTrue(button[(int)ShapeType.ARROW]);
+
+        }
+
+        //Resuze
+        [TestMethod]
+        public void ResizeTest()
+        {
+            _showModel.ResizeCanvas(100, 200);
+            _mockModel.Verify(m => m.ResizeCanvas(100, 200), Times.Once());
+
+        }
+
+        //Resuze
+        [TestMethod]
+        public void ButtonDataBindingTest()
+        {
+            bool[] test = { true, true, true, true };
+            _privateShowModel.SetField("_isButtonChecked", test);
+            Assert.IsTrue(_showModel.IsCircleButtonChecked);
+            Assert.IsTrue(_showModel.IsRectangleButtonChecked);
+            Assert.IsTrue(_showModel.IsMouseButtonChecked);
+            Assert.IsTrue(_showModel.IsLineButtonChecked);
         }
     }
 }

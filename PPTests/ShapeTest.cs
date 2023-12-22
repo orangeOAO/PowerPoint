@@ -26,6 +26,13 @@ namespace PTTests
         }
         // test
         [TestMethod]
+        public void CreateTest()
+        {
+            
+        }
+
+        // test
+        [TestMethod]
         public void CircleDrawTest()
         {
             _circle.Draw(_mockGraphics.Object);
@@ -52,6 +59,8 @@ namespace PTTests
         [TestMethod]
         public void CircleDrawBoxTest()
         {
+            var test = new Shape();
+            test.DrawBox(_mockGraphics.Object);
             _circle.DrawBox(_mockGraphics.Object);
             _mockGraphics.Verify(g => g.DrawCircleSelectBox(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
         }
@@ -138,8 +147,101 @@ namespace PTTests
             Assert.AreEqual(false, line.GetInShape(new Point(37, 37)));
         }
 
-
-
-
+        //test
+        [TestMethod]
+        public void TransformCoordinate_Test()
+        {
+            var line = new PowerPoint.Line(new Point(1, 1), new Point(30, 30));
+            var shapeName = line._shape;
+            //PrivateObject privateObject = new PrivateObject(line);
+            //privateObject.GetField("")
+            Assert.AreEqual("(1, 1), (30, 30)", line._information);
+            Assert.AreEqual("線", shapeName);
+            Assert.AreEqual("線", line.GetShapeName());
+            Assert.AreEqual("(1, 1), (30, 30)", line.GetInfo());
         }
+
+        //test
+        [TestMethod]
+        public void SetPoint_Test()
+        {
+            var line = new PowerPoint.Line(new Point(1, 1), new Point(30, 30));
+            line.SetFirstPoint(new Point(10, 20));
+            line.SetSecondPoint(new Point(40, 40));
+            Assert.AreEqual("(10, 20), (40, 40)", line._information);
+        }
+
+        //test
+        [TestMethod]
+        public void TestLineMoveCalculate()
+        {
+            var line = new PowerPoint.Line(new Point(1, 1), new Point(30, 30));
+            var privateObject = new PrivateObject(line, new PrivateType(typeof(PowerPoint.Shape)));
+            line.SetTemporaryPoint();
+            privateObject.SetField("_pointSelect", new Point(10, 10));
+            line.MoveCalculate(new Point(15, 15));
+
+            Assert.AreEqual("{X=6,Y=6}", line.GetPoint1().ToString());
+            Assert.AreEqual("{X=35,Y=35}", line.GetPoint2().ToString());
+        }
+
+        //test
+        [TestMethod]
+        public void TestSetResizeShapePoint()
+        {
+            var line = new PowerPoint.Line(new Point(1, 1), new Point(30, 30));
+            line.SetResizeShapePoint(new Point(20, 20));
+            Assert.AreEqual("{X=20,Y=20}", line.GetPoint2().ToString());
+        }
+
+        //test
+        [TestMethod]
+        public void TestScale()
+        {
+            var line = new PowerPoint.Line(new Point(1, 1), new Point(30, 30));
+            line.Scale((float)0.5);
+            Assert.AreEqual("{X=15,Y=15}", line.GetPoint2().ToString());
+        }
+
+        //test
+        [TestMethod]
+        public void TestisSelected()
+        {
+            var line = new PowerPoint.Line(new Point(1, 1), new Point(30, 30));
+            var circle = new PowerPoint.Shape();
+            circle.SetFirstPoint(new Point(1, 1));
+            circle.SetSecondPoint(new Point(2, 2));
+            line.IsShapeSelected = false;
+            Assert.AreEqual(false, line.IsShapeSelected);
+            Assert.AreEqual(new Point(1, 1), circle.GetPoint1());
+            Assert.AreEqual(new Point(2, 2), circle.GetPoint2());
+        }
+
+        //test
+        [TestMethod]
+        public void TestShape()
+        {
+            var line = new PowerPoint.Line();
+            var circle = new PowerPoint.Circle();
+            var rectangle = new PowerPoint.Rectangle();
+            line.SetFirstPoint(new Point(1, 1));
+            line.SetSecondPoint(new Point(2, 2));
+            circle.SetFirstPoint(new Point(1, 1));
+            circle.SetSecondPoint(new Point(2, 2));
+            rectangle.SetFirstPoint(new Point(3, 3));
+            rectangle.SetSecondPoint(new Point(4, 4));
+            line.IsShapeSelected = false;
+            Assert.AreEqual(false, line.IsShapeSelected);
+            Assert.AreEqual(new Point(1, 1), line.GetPoint1());
+            Assert.AreEqual(new Point(2, 2), line.GetPoint2());
+            Assert.AreEqual(new Point(1, 1), circle.GetPoint1());
+            Assert.AreEqual(new Point(2, 2), circle.GetPoint2());
+            Assert.AreEqual(new Point(3, 3), rectangle.GetPoint1());
+            Assert.AreEqual(new Point(4, 4), rectangle.GetPoint2());
+        }
+
+
+
+
+    }
 }

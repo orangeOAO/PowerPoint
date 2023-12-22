@@ -64,10 +64,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="modelTest.cs" />
     <Compile Include="ShapeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowModelTest.cs" />
     <Compile Include="StateTest.cs" />
+    <Compile Include="WindowsFormsGraphicsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

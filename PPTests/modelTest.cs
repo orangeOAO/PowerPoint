@@ -4,8 +4,9 @@ using System.Drawing;
 using System;
 using System.ComponentModel;
 using Moq;
+using PowerPoint.IState;
 
-namespace PTTests
+namespace PPTests
 {
     [TestClass]
     public class modelTest
@@ -25,11 +26,34 @@ namespace PTTests
 
         //test
         [TestMethod]
+        public void ModelTest_SetState()
+        {
+            
+            var mockState = new Mock<State>();
+            _model.SetState(mockState.Object);
+            var currentState = _privateModel.GetField("_currentState");
+            Assert.AreEqual(mockState.Object, currentState);
+        }
+
+        //test
+        [TestMethod]
         public void ModelTest_HandleModelChange()
         {
+            bool isCalled = false;
+            _model._modelChanged += () => { isCalled = true; };
+            _model.NotifyModelChanged();
+            Assert.IsTrue(isCalled);
+        }
 
-            //_model.Invoke();
-            //Assert.ThrowsException<NullReferenceException>(() => _model.No);
+        //test
+        [TestMethod]
+        public void ModelTest_NotifyStateChanged()
+        {
+            bool isCalled = false;
+            PowerPoint.IState.PointState pointState = new PowerPoint.IState.PointState();
+            _model._stateChanged += (state) => { isCalled = true; };
+            _model.NotifyStateChanged(pointState);
+            Assert.IsTrue(isCalled);
         }
 
         //test
@@ -39,7 +63,7 @@ namespace PTTests
             BindingList<Shape> _shapeList = new BindingList<Shape> { new Line(), new Circle(), new PowerPoint.Rectangle() };
             _model.CreateShape(ShapeType.LINE);
             _model.CreateShape(ShapeType.CIRCLE);
-            _model.CreateShape(ShapeType.RECTANGLE);
+            _model.CreateShape(ShapeType.ARROW);
             Assert.AreEqual(3,_model.GetShapeCount());
         }
 
@@ -61,9 +85,8 @@ namespace PTTests
         {
             _model.CreateShape(ShapeType.LINE);
             _model.CreateShape(ShapeType.CIRCLE);
-            BindingList<Shape> _shapeList = _model.GetShapes();
-            _shapeList[0].IsShapeSelected = true;
-            _model.DeleteShape(0);
+            _model._selectShapeIndex = 1;
+            _model.DeleteSelectShape();
             Assert.AreEqual(1, _model.GetShapeCount());
             Assert.AreEqual(-1, _model._selectShapeIndex);
         }
@@ -184,7 +207,6 @@ namespace PTTests
             _model.GetShapes()[0].SetFirstPoint(new Point(3, 5));
             _model.GetShapes()[0].SetSecondPoint(new Point(30, 30));
             _model.GetShapes()[0].IsShapeSelected = true;
-            _model._resizeShape = true;
             _model.ResizeShape(new Point(20, 20));
             Assert.AreEqual(20, _model.GetShapes()[0].GetPoint2().X);
             Assert.AreEqual(20, _model.GetShapes()[0].GetPoint2().Y);
@@ -197,14 +219,9 @@ namespace PTTests
             _model.CreateShape(ShapeType.LINE);
             _model.GetShapes()[0].SetFirstPoint(new Point(3, 5));
             _model.GetShapes()[0].SetSecondPoint(new Point(30, 30));
-            _model.GetShapes()[0].IsShapeSelected = true;
-            _model._resizeShape = true;
-            _model._record = false;
-            Assert.AreEqual(true, _model.DecideToChangeCursor(new Point(30, 30)));
-            _model._record = true;
-            Assert.AreEqual(true, _model.DecideToChangeCursor(new Point(20, 20)));
-            _model._resizeShape = false;
-            Assert.AreEqual(false, _model.DecideToChangeCursor(new Point(20, 20)));
+            Assert.AreEqual(true, _model.ChangeToResizeMode(new Point(30, 30)));
+            Assert.AreEqual(false, _model.ChangeToResizeMode(new Point(20, 20)));
+            Assert.AreEqual(false, _model.ChangeToResizeMode(new Point(40, 40)));
         }
 
         //test
@@ -234,6 +251,26 @@ namespace PTTests
             _model.CreateShape(ShapeType.RECTANGLE);
             _model.Clear();
             Assert.AreEqual(0, _model.GetShapeCount());
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_ResizeCanvas()
+        {
+            _privateModel.SetField("_canvasWidth",100);
+
+            _privateModel.SetField("_shapesList", new BindingList<Shape> { new Line(new Point(10,10), new Point(20,20)), new Circle(new Point(10, 10), new Point(20, 20)), new PowerPoint.Rectangle(new Point(10, 10), new Point(20, 20)) });
+            _model.ResizeCanvas(20, 100);
+            Assert.AreEqual(new Point(2, 2),_model.GetShapes()[0].GetPoint1());
+            Assert.AreEqual(new Point(4, 4), _model.GetShapes()[0].GetPoint2());
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_GetState()
+        {
+            _privateModel.SetField("_currentState",new PowerPoint.IState.PointState());
+            Assert.AreEqual(Model.ModelState.Normal, _model.GetState());
         }
     }
 }
