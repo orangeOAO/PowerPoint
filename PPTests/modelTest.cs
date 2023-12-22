@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using Moq;
 using PowerPoint.IState;
+using PowerPoint.Command;
 
 namespace PPTests
 {
@@ -53,6 +54,16 @@ namespace PPTests
             PowerPoint.IState.PointState pointState = new PowerPoint.IState.PointState();
             _model._stateChanged += (state) => { isCalled = true; };
             _model.NotifyStateChanged(pointState);
+            Assert.IsTrue(isCalled);
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_SetUndoRedoHistory()
+        {
+            bool isCalled = false;
+            _model._undoRedoHistoryChanged += (test, test2) => { isCalled = true; };
+            _model.SetUndoRedoHistory(true, true);
             Assert.IsTrue(isCalled);
         }
 
@@ -271,6 +282,77 @@ namespace PPTests
         {
             _privateModel.SetField("_currentState",new PowerPoint.IState.PointState());
             Assert.AreEqual(Model.ModelState.Normal, _model.GetState());
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_DeleteByUndo()
+        {
+            _privateModel.SetField("_shapesList", new BindingList<Shape>() { new Circle(), new PowerPoint.Rectangle() });
+            _model.DeleteShapeByUndo(0);
+            Assert.AreEqual(_model.GetShapes().Count, 1);
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_MoveShapeByBias()
+        {
+            var mockShape = new Mock<Shape>();
+            _privateModel.SetField("_shapesList", new BindingList<Shape>() { mockShape.Object });
+
+            _model.MoveShapeByBias(new Size(10,10),0);
+            mockShape.Verify(s => s.MoveShapeByBias(It.IsAny<Size>()), Times.Once);
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_HandleMoveShape()
+        {
+            var mockCommand = new Mock<CommandManager>();
+
+            _privateModel.SetField("_commandManager", mockCommand.Object);
+            _model.HandleMoveShape(0,new Size(1,1));
+            mockCommand.Verify(s => s.Execute(It.IsAny<MoveCommand>()), Times.Once);
+            _model.HandleCreateShape(new Circle());
+            mockCommand.Verify(s => s.Execute(It.IsAny<AddCommand>()), Times.Once);
+            _model.HandleDrawShape(new Circle());
+            mockCommand.Verify(s => s.Execute(It.IsAny<DrawingCommand>()), Times.Once);
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_UndoAndRedo()
+        {
+            var mockCommand = new Mock<CommandManager>();
+
+            _privateModel.SetField("_commandManager", mockCommand.Object);
+            _model.Undo();
+            mockCommand.Verify(s => s.Undo(), Times.Once);
+
+            _model.Redo();
+            mockCommand.Verify(s => s.Redo(), Times.Once);
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_Insert()
+        {
+            var mockShape = new Mock<Shape>();
+            _privateModel.SetField("_shapesList", new BindingList<Shape>() { mockShape.Object });
+            _model.InsertShape(new Circle(new Point(1,1), new Point(2,2)), 0);
+            Assert.AreEqual(new Point(1,1) , _model.GetShapes()[0].GetPoint1());
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_MouseUp()
+        {
+            var mockModel = new Mock<Model>();
+            _privateModel.SetField("_currentState", new SelectState());
+            mockModel.Setup(m => m.GetState()).Returns(Model.ModelState.Select);
+            mockModel.Object._selectShapeIndex = 0;
+            mockModel.Object.MouseUp(new Point(1, 1));
+            mockModel.Verify(m => m.HandleMoveShape(0, It.IsAny<Size>()), Times.Once);
         }
     }
 }

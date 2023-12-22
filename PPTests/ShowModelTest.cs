@@ -38,6 +38,16 @@ namespace PPTests
 
         // test
         [TestMethod]
+        public void HandleUndoRedoHistoryChangedTest()
+        {
+            bool isCalled = false;
+            _showModel._undoRedoHistoryChanged += (test, test2) => { isCalled = true; };
+            _showModel.HandleUndoRedoHistoryChanged(true, true);
+            Assert.IsTrue(isCalled);
+        }
+
+        // test
+        [TestMethod]
         public void HandlePropertyChangedTest()
         {
             // 创建对象实例
@@ -241,6 +251,17 @@ namespace PPTests
             Assert.IsTrue(_showModel.IsRectangleButtonChecked);
             Assert.IsTrue(_showModel.IsMouseButtonChecked);
             Assert.IsTrue(_showModel.IsLineButtonChecked);
+        }
+
+        //Resuze
+        [TestMethod]
+        public void RedoAndUndoTest()
+        {
+            _showModel.Undo();
+            _mockModel.Verify(m => m.Undo(), Times.Once);
+
+            _showModel.Redo();
+            _mockModel.Verify(m => m.Redo(), Times.Once);
         }
     }
 }

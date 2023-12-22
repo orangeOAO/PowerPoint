@@ -240,7 +240,20 @@ namespace PTTests
             Assert.AreEqual(new Point(4, 4), rectangle.GetPoint2());
         }
 
+        //test
+        [TestMethod]
+        public void TestMoveShapeBybias()
+        {
+            var line = new PowerPoint.Line();
+            line.SetFirstPoint(new Point(1, 1));
+            line.SetSecondPoint(new Point(2, 2));
 
+            line.MoveShapeByBias(new Size(10, 10));
+
+            Assert.AreEqual(new Point(11, 11), line.GetPoint1());
+            Assert.AreEqual(new Point(12, 12), line.GetPoint2());
+            
+        }
 
 
     }
