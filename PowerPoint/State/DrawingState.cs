@@ -10,11 +10,8 @@ namespace PowerPoint.IState
 {
     public class DrawingState : State
     {
-        public virtual bool _isPressed 
-        {
-            get;
-            set;
-        }
+        private bool _isPressed;
+        
         internal ShapeType Type 
         {
             get;

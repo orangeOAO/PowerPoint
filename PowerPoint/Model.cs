@@ -34,20 +34,11 @@ namespace PowerPoint
             Select,
             Resize
         }
-        public bool _record {
-            get;
-            set;
-        }
         public int _selectShapeIndex {
             get;
             set;
         }
         public bool _moveShape {
-            get;
-            set;
-        }
-
-        public bool _resizeShape {
             get;
             set;
         }
@@ -66,7 +57,7 @@ namespace PowerPoint
         {
             _currentState = state;
             NotifyStateChanged(_currentState);
-            Debug.WriteLine(_currentState);
+            //Debug.WriteLine(_currentState);
         }
 
         //CreateShape
@@ -116,7 +107,7 @@ namespace PowerPoint
         }
 
         //Notify
-        void NotifyModelChanged()
+        public void NotifyModelChanged()
         {
             if (_modelChanged != null)
             {
@@ -125,7 +116,7 @@ namespace PowerPoint
         }
 
         //Notify
-        void NotifyStateChanged(State state)
+        public void NotifyStateChanged(State state)
         {
             if (_stateChanged != null)
             {
@@ -358,6 +349,9 @@ namespace PowerPoint
         }
 
         //Get
-
+        public Model.ModelState GetState()
+        {
+            return _currentState.GetState();
+        }
     }
 }
