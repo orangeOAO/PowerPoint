@@ -4,16 +4,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PowerPoint.ShowModel;
 
-namespace PowerPoint.ShowModel
+namespace PowerPoint.IState
 {
     public class DrawingState : State
     {
-        public virtual bool _isPressed 
-        {
-            get;
-            set;
-        }
+        private bool _isPressed;
+        
         internal ShapeType Type 
         {
             get;
@@ -43,9 +41,9 @@ namespace PowerPoint.ShowModel
         }
 
         //Move
-        public void MovedPointer(Model model, Point point)
+        public void MovedPointer(Model model, Point point, bool press)
         {
-            if (_isPressed)
+            if (press)
             {
                 model.MovedPointer(point);
             }

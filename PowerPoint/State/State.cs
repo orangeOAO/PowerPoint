@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PowerPoint.ShowModel
+namespace PowerPoint.IState
 {
     public interface State
     {
@@ -16,7 +16,7 @@ namespace PowerPoint.ShowModel
         void PressedPointer(Model model, Point point);
 
         //Move
-        void MovedPointer(Model model, Point point);
+        void MovedPointer(Model model, Point point, bool press);
 
         //Release
         void ReleasedPointer(Model model, Point point);

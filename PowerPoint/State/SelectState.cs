@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PowerPoint.ShowModel;
 
-namespace PowerPoint.ShowModel
+namespace PowerPoint.IState
 {
     public class SelectState : State
     {
@@ -21,19 +18,33 @@ namespace PowerPoint.ShowModel
         public void PressedPointer(Model model, Point point)
         {
             model.DetectInShape(point);
+            //if(model._selectShapeIndex == -1)
+            //{
+            //    model.SetState(new PointState());
+            //}
         }
 
         //Move
-        public void MovedPointer(Model model, Point point)
+        public void MovedPointer(Model model, Point point,bool press)
         {
-
-            model.MoveShape(point);
+            //model.SetState(new ResizeState());
+            //Debug.WriteLine("OAO");
+            if (model.ChangeToResizeMode(point))
+            {
+                model.SetState(new ResizeState());
+            }
+            else
+            {
+                if (press)
+                {
+                    model.MoveShape(point);
+                }
+            }
         }
 
         //Release
         public void ReleasedPointer(Model model, Point point)
         {
-            model._moveShape = false;
         }
 
         //GetState

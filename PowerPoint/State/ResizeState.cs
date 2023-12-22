@@ -4,8 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PowerPoint.ShowModel;
 
-namespace PowerPoint.ShowModel
+namespace PowerPoint.IState
 {
     public class ResizeState : State
     {
@@ -20,20 +21,26 @@ namespace PowerPoint.ShowModel
         //Press
         public void PressedPointer(Model model, Point point)
         {
-            model._resizeShape = true;
         }
 
         //Move
-        public void MovedPointer(Model model, Point point)
+        public void MovedPointer(Model model, Point point, bool press)
         {
-            model.ResizeShape(point);
+            if (press)
+            {
+                model.ResizeShape(point);
+            }
+            else
+            {
+                model.SetState(new SelectState());
+            }
+            
         }
 
         //Release
         public void ReleasedPointer(Model model, Point point)
         {
-            model._resizeShape = false;
-            model._record = false;
+            
         }
 
         //GetState

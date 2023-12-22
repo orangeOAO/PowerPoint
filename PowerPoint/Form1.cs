@@ -9,32 +9,84 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PowerPoint.IState;
 using PowerPoint.ShowModel;
 
 namespace PowerPoint
 {
     public partial class Form1 : Form
     {
+
         public Form1(Model model)
         {
-            this._model = model;
+            _model = model;
             _showModel = new ShowModel.ShowModel(_model);
-            InitializeComponent();
-            _dataGridView1.DataSource = _showModel.GetShapes();
             _showModel._modelChanged += HandleModelChanged;
-            _panel1.MouseDown += HandleCanvasPressed;
-            _panel1.MouseUp += HandleCanvasReleased;
-            _panel1.MouseMove += HandleCanvasMoved;
-            _panel1.Paint += HandleCanvasPaint;
+            _showModel._cursorChanged += SetCursor;
+            _showModel._undoRedoHistoryChanged += HandleUndoRedoButton;
+
+            
+            InitializeComponent();
+            InitializeDataGridView();
+            InitializePanel();
+            HandleUndoRedoButton(false, false);
+            BindingFunction();
             this.KeyDown += Form1KeyDown;
             this.KeyPreview = true;
-            //for (int i = 0; i < _showModel.ToolClick.Length; i++)
-            //{
-            //    ToolStripButton button = (ToolStripButton)_toolStrip1.Items[i];
-            //    button.DataBindings.Add("Checked", _toolbarModel, $"ButtonChecked[{i}]", true, DataSourceUpdateMode.OnPropertyChanged);
-            //}
         }
-        
+
+
+        //initializeDatagridview
+        private void InitializeDataGridView()
+        {
+            _dataGridView1.DataSource = _showModel.GetShapes();
+            _dataGridView1.Columns["IsShapeSelected"].Visible = false;
+            _dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SetDataGridView1CellContentClick);
+            _dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            _dataGridView1.Columns[Constant.TWO].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //splitContainerLeft.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+        }
+
+        //initializeForm
+        private void InitializePanel()
+        {
+            _Drawingpanel.MouseDown += HandleCanvasPressed;
+            _Drawingpanel.MouseUp += HandleCanvasReleased;
+            _Drawingpanel.MouseMove += HandleCanvasMoved;
+            _Drawingpanel.Paint += HandleCanvasPaint;
+            _buttonTemporary1.Paint += HandleCanvasPaintOnButton;
+            splitContainerLeft.Panel1.Resize += (sender, e) => HandleContainerResize();
+            splitContainerLeft.Resize += (sender, e) => HandleContainerResize();
+            splitContainerRight.Panel1.Resize += (sender, args) => HandleContainerResize();
+            splitContainerRight.Resize += (sender, args) => HandleContainerResize();
+        }
+
+        /// handle resize
+        public void HandleContainerResize()
+        {
+            _buttonTemporary1.Width = splitContainerLeft.Panel1.Width - Constant.EIGHT;
+            _buttonTemporary1.Height = (int)(_buttonTemporary1.Width * Constant.RATIO);
+            _Drawingpanel.Width = splitContainerRight.Panel1.Width - Constant.EIGHT;
+            _Drawingpanel.Height = (int)(_Drawingpanel.Width * Constant.RATIO);
+            _showModel.ResizeCanvas(_Drawingpanel.Width, _Drawingpanel.Height);
+        }
+
+        //binding
+        public void BindingFunction()
+        {
+            _lineButton.DataBindings.Add(Constant.CHECKED, _showModel, Constant.IS_LINE_CHECKED);
+            _rectangleButton.DataBindings.Add(Constant.CHECKED, _showModel, Constant.IS_RECTANGLE_CHECKED);
+            _circleButton.DataBindings.Add(Constant.CHECKED, _showModel, Constant.IS_CIRCLE_CHECKED);
+            _selectButton.DataBindings.Add(Constant.CHECKED, _showModel, Constant.IS_MOUSE_CHECKED);
+        }
+
+        /// handle
+        public void HandleUndoRedoButton(bool isUndo, bool isRedo)
+        {
+            _undoButton.Enabled = isUndo;
+            _redoButton.Enabled = isRedo;
+        }
+
         //按下新增
         private void Button1Click(object sender, EventArgs e)
         {
@@ -51,38 +103,32 @@ namespace PowerPoint
         public void HandleCanvasReleased(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             _showModel.ReleasedPointer(new Point(e.X, e.Y));
-            Cursor = Cursors.Arrow;
-            ToolStripButton[] buttonArray = { _lineButton, _rectangleButton, _circleButton };
-            _showModel.ReleaseButtonClick(buttonArray);
-            this.HandleSelectButtonClick();
-            // Debug.Print("release");
         }
 
         //HandleMoved
         public void HandleCanvasMoved(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             _showModel.MovedPointer(new Point(e.X, e.Y));
-            if (_showModel.ChangeCursor(new Point(e.X, e.Y)))
-            {
-                Cursor = Cursors.SizeNWSE;
-            }
-            else
-            {
-                Cursor = Cursors.Arrow;
-            }
+        }
+
+        /// set
+        public void SetCursor(Cursor cursor)
+        {
+            Cursor = cursor;
         }
 
         //Paint
         public void HandleCanvasPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
+
             _showModel.Draw(e.Graphics);
         }
 
         //button
         public void HandleCanvasPaintOnButton(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            float scaleX = (float)_buttonTemporary1.Width / _panel1.Width;
-            float scaleY = (float)_buttonTemporary1.Height / _panel1.Height;
+            float scaleX = (float)_buttonTemporary1.Width / _Drawingpanel.Width;
+            float scaleY = (float)_buttonTemporary1.Height / _Drawingpanel.Height;
             float scale = Math.Min(scaleX, scaleY);
             Matrix array = new Matrix();
             array.Scale(scale, scale);
@@ -96,26 +142,19 @@ namespace PowerPoint
             Invalidate(true);
         }
 
-        //HandleShapeButton
-        public void HandleShapeButton(ShapeType type)
+        /// undo
+        public void HandleUndoButtonClick(object sender, EventArgs e)
         {
-            State state;
-            state = new DrawingState(type);
-            _showModel.SetState(state);
-            _showModel.ClearSelectBox();
-            ToolStripButton[] buttonArray = { _lineButton, _rectangleButton, _circleButton, _selectButton };
-            _showModel.HandleButtonClick(buttonArray, (int)type);
-            Cursor = Cursors.Cross;
+            _showModel.Undo();
         }
 
-        //HandleSelectButton
-        public void HandleSelectButtonClick()
+        /// redo
+        public void HandleRedoButtonClick(object sender, EventArgs e)
         {
-            State state = new PointState();
-            _showModel.SetState(state);
-            ToolStripButton[] buttonArray = { _lineButton, _rectangleButton, _circleButton, _selectButton };
-            _showModel.HandleButtonClick(buttonArray, Constant.SELECT_BUTTON);
+            _showModel.Redo();
         }
+
+
 
         //CreateCell
         private void SetDataGridView1CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -129,25 +168,25 @@ namespace PowerPoint
         //circleclick
         private void ClickCircleButton(object sender, EventArgs e)
         {
-            HandleShapeButton(ShapeType.CIRCLE);
+            _showModel.HandleButtonClick((int)ShapeType.CIRCLE);
         }
 
         //lineclick
         private void ClickLineButton(object sender, EventArgs e)
         {
-            HandleShapeButton(ShapeType.LINE);
+            _showModel.HandleButtonClick((int)ShapeType.LINE);
         }
 
         //rectangleclick
         private void ClickRectangleButton(object sender, EventArgs e)
         {
-            HandleShapeButton(ShapeType.RECTANGLE);
+            _showModel.HandleButtonClick((int)ShapeType.RECTANGLE);
         }
 
         //select
         private void ClickSelectButton(object sender, EventArgs e)
         {
-            HandleSelectButtonClick();
+            _showModel.HandleButtonClick((int)ShapeType.ARROW);
         }
 
         //DetectDelete
@@ -158,5 +197,6 @@ namespace PowerPoint
                 _showModel.DeleteSelectShape();
             }
         }
+        
     }
 }

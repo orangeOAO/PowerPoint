@@ -7,16 +7,24 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Drawing;
+using PowerPoint.Command;
+using PowerPoint.IState;
 
 namespace PowerPoint
 {
     public class Model
     {
-
+        public event CommandStart.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
+        public delegate void StateChangedEventHandler(State state);
+        public event StateChangedEventHandler _stateChanged;
         private BindingList<Shape> _shapesList = new BindingList<Shape>();
         private readonly Factory _factory = new Factory();
+        private CommandStart _commandManager;
+        private State _currentState;
+        private bool _isPress;
+        private int _canvasWidth;
         Shape _hint;
         private Point _firstPoint = new Point(0, 0);
         public enum ModelState
@@ -26,32 +34,38 @@ namespace PowerPoint
             Select,
             Resize
         }
-        public bool _record 
-        {
+        public int _selectShapeIndex {
             get;
             set;
         }
-        public int _selectShapeIndex 
-        {
-            get;
-            set;
-        }
-        public bool _moveShape 
-        {
+        public bool _moveShape {
             get;
             set;
         }
 
-        public bool _resizeShape 
+        public Model()
         {
-            get;
-            set;
+            //_commandManager = new CommandStart();
+            //_commandManager._undoRedoHistoryChanged += SetUndoRedoHistory;
+            _selectShapeIndex = -1;
+            _currentState = new PointState();
+        }
+
+        //setState
+
+        public virtual void SetState(State state)
+        {
+            _currentState = state;
+            NotifyStateChanged(_currentState);
+            //Debug.WriteLine(_currentState);
         }
 
         //CreateShape
         public virtual void CreateShape(ShapeType shapeType)
         {
-            _shapesList.Add(_factory.CreateShape(shapeType));
+            var shape = _factory.CreateShape(shapeType);
+            _shapesList.Add(shape);
+            //HandleInsertShape(shape);
             NotifyModelChanged();
 
         }
@@ -65,16 +79,20 @@ namespace PowerPoint
         //DeleteShape
         public virtual void DeleteShape(int index)
         {
-            _shapesList.RemoveAt(index);
-            NotifyModelChanged();
+            if (index != -1)
+            {
+                //_commandManager.Execute(new DeleteCommand(this, _shapesList[index], index));
+                _shapesList.RemoveAt(index);
+            }
             _selectShapeIndex = -1;
+            NotifyModelChanged();
         }
-
         //DeleteSelectShape
         public virtual void DeleteSelectShape()
         {
             if (_selectShapeIndex != -1)
             {
+                //_commandManager.Execute(new DeleteCommand(this, _shapesList[_selectShapeIndex], _selectShapeIndex));
                 _shapesList.RemoveAt(_selectShapeIndex);
                 NotifyModelChanged();
             }
@@ -89,11 +107,20 @@ namespace PowerPoint
         }
 
         //Notify
-        void NotifyModelChanged()
+        public void NotifyModelChanged()
         {
             if (_modelChanged != null)
             {
                 _modelChanged();
+            }
+        }
+
+        //Notify
+        public void NotifyStateChanged(State state)
+        {
+            if (_stateChanged != null)
+            {
+                _stateChanged(state);
             }
         }
 
@@ -124,7 +151,6 @@ namespace PowerPoint
             hint.SetSecondPoint(point);
             _shapesList.Add(hint);
             NotifyModelChanged();
-            _record = false;
         }
 
         //Clear
@@ -170,18 +196,16 @@ namespace PowerPoint
             _moveShape = false;
             _selectShapeIndex = -1;
             ClearSelectBox();
-            for (int count = _shapesList.Count - 1; count >= 0 ; count--)
+            for (int count = _shapesList.Count - 1; count >= 0; count--)
             {
                 if (_shapesList[count].GetInShape(mousePoint))
                 {
-                    _shapesList[count].SetTemporaryPoint();
                     _moveShape = true;
+                    _shapesList[count].SetTemporaryPoint();
                     _selectShapeIndex = count;
                     break;
                 }
             }
-            //_moveShape = false;
-            NotifyModelChanged();
         }
 
         //ClearBox
@@ -215,41 +239,119 @@ namespace PowerPoint
         {
             foreach (var shape in _shapesList)
             {
-                if (shape.IsShapeSelected && _resizeShape)
-                {
-                    SetResizePoint(shape, mousePoint);
-                    NotifyModelChanged();
-                }
+                SetResizePoint(shape, mousePoint);
+                NotifyModelChanged();
             }
         }
 
         //GetInResizeShape
-        private bool GetInResizeShape(Shape shape, Point point)
+        public bool GetInResizeShape(Shape shape, Point point)
         {
             return shape.GetInResizeShape(point);
         }
 
         //ChangeCursor
-        public virtual bool DecideToChangeCursor(Point mousePoint)
+        public virtual bool ChangeToResizeMode(Point mousePoint)
         {
-            if (_record)
-            {
-                return _resizeShape;
-            }
             foreach (var shape in _shapesList)
             {
-                if (shape.IsShapeSelected && GetInResizeShape(shape, mousePoint))
+                if (GetInResizeShape(shape, mousePoint))
                 {
-                    if (_resizeShape)
-                    {
-                        _record = true;
-                    }
                     return true;
                 }
             }
-            _record = false;
             return false;
         }
 
+        //ResizeCanvas
+        public virtual void ResizeCanvas(int width, int height)
+        {
+            foreach (var shape in _shapesList)
+            {
+                shape.Scale((float)width / (float)_canvasWidth);
+            }
+            _canvasWidth = width;
+            _factory.ResizeCanvas(width, height);
+            NotifyModelChanged();
+        }
+
+        //// handle
+        //public virtual void HandleInsertShape(Shape shape)
+        //{
+        //    _commandManager.Execute(new AddCommand(this, shape, _shapesList.Count - 1));
+        //}
+
+        //// handle
+        //public virtual void HandleMoveShape(int index, Size bias)
+        //{
+        //    _commandManager.Execute(new MoveCommand(this, index, bias));
+        //}
+
+        //// handle
+        //public virtual void HandleDrawShape(Shape shape)
+        //{
+        //    _commandManager.Execute(new DrawingCommand(this, shape, _shapesList.Count - 1));
+        //}
+
+        ////set
+        //public void SetUndoRedoHistory(bool isUndo, bool isRedo)
+        //{
+        //    if (_undoRedoHistoryChanged != null)
+        //    {
+        //        _undoRedoHistoryChanged(isUndo, isRedo);
+        //    }
+        //}
+
+        // undo
+        public virtual void Undo()
+        {
+            _commandManager.Undo();
+        }
+
+        // redo
+        public virtual void Redo()
+        {
+            _commandManager.Redo();
+        }
+
+        //insert
+        public virtual void InsertShapeByShape(Shape shape, int index)
+        {
+            _shapesList.Insert(index, shape);
+            NotifyModelChanged();
+        }
+
+        //mouseUP
+        public void MouseUp(Point point)
+        {
+            _isPress = false;
+            _currentState.ReleasedPointer(this,point);
+        }
+
+        //mouseUP
+        public void MouseDown(Point point)
+        {
+            _isPress = true;
+            _currentState.PressedPointer(this, point);
+            
+        }
+
+        //mouseUP
+        public void MouseMove(Point point)
+        {
+            _currentState.MovedPointer(this, point, _isPress);
+        }
+
+        //mouseDraw
+        public void Draw(System.Drawing.Graphics graphics)
+        {
+            _currentState.Draw(this, graphics);
+        }
+
+        //Get
+        public Model.ModelState GetState()
+        {
+            return _currentState.GetState();
+        }
     }
 }

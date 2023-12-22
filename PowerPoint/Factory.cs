@@ -9,14 +9,16 @@ namespace PowerPoint
 {
     public class Factory
     {
-        private const int BORDER1 = 0;
-        private const int BORDER2 = 100;
+        private int _canvasWidth=450;
+        private int _canvasHeight=450;
+      
         readonly Random _random = new Random();
         //Factory
         public Shape CreateShape(ShapeType shapeType)
-        {
-            Point point1 = new Point(_random.Next(BORDER1, BORDER2), _random.Next(BORDER1, BORDER2));
-            Point point2 = new Point(_random.Next(BORDER1, BORDER2), _random.Next(BORDER1, BORDER2));
+        {   
+            
+            Point point1 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
+            Point point2 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
             switch (shapeType)
             {
                 case ShapeType.LINE:
@@ -28,6 +30,13 @@ namespace PowerPoint
                 default:
                     return new Rectangle(point1, point2);
             }
+        }
+
+        //ResizeCanvas
+        public void ResizeCanvas(int width, int height)
+        {
+            _canvasWidth = width;
+            _canvasHeight = height;
         }
     }
 }
