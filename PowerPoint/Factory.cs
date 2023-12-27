@@ -11,24 +11,28 @@ namespace PowerPoint
     {
         private int _canvasWidth=450;
         private int _canvasHeight=450;
-      
+        private Point _point1;
+        private Point _point2;
+
         readonly Random _random = new Random();
         //Factory
         public Shape CreateShape(ShapeType shapeType)
         {   
-            
-            Point point1 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
-            Point point2 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
+            if(_point1 == new Point(0,0) || _point2 == new Point(0, 0))
+            {
+                _point1= new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
+                _point2 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
+            }
             switch (shapeType)
             {
                 case ShapeType.LINE:
-                    return new Line(point1, point2);
+                    return new Line(_point1, _point2);
                 case ShapeType.RECTANGLE:
-                    return new Rectangle(point1, point2);
+                    return new Rectangle(_point1, _point2);
                 case ShapeType.CIRCLE:
-                    return new Circle(point1, point2);
+                    return new Circle(_point1, _point2);
                 default:
-                    return new Rectangle(point1, point2);
+                    return new Rectangle(_point1, _point2);
             }
         }
 
@@ -37,6 +41,13 @@ namespace PowerPoint
         {
             _canvasWidth = width;
             _canvasHeight = height;
+        }
+
+        //setPoint
+        public void SetPoint(Point point1, Point point2)
+        {
+            _point1 = point1;
+            _point2 = point2;
         }
     }
 }

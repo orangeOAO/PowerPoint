@@ -7,23 +7,31 @@ using System.Threading.Tasks;
 
 namespace PowerPoint.Command
 {
-    class ResizeCommand : Command
+    public class ResizeCommand : Command
     {
-        public ResizeCommand(Shape shape, Point lastPoint)
+        public ResizeCommand(Model model, int index, Point point, Point startpoint)
         {
-
+            _model = model;
+            _index = index;
+            _resizePoint = point;
+            _originPoint = startpoint;
         }
-        /// execute
+
+        //exe
         public void Execute()
         {
-
+            _model.SetResizePoint(_index, _resizePoint);
         }
 
-
-        /// unexecute
+        //unexe
         public void Unexecute()
         {
-
+            _model.SetResizePoint(_index, _originPoint);
         }
+
+        private Model _model;
+        private int _index;
+        private Point _resizePoint;
+        private Point _originPoint;
     }
 }

@@ -1,11 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PowerPoint;
-using System.Drawing;
-using System;
-using System.ComponentModel;
 using Moq;
-using PowerPoint.IState;
+using PowerPoint;
 using PowerPoint.Command;
+using PowerPoint.IState;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace PPTests
 {
@@ -29,7 +28,7 @@ namespace PPTests
         [TestMethod]
         public void ModelTest_SetState()
         {
-            
+
             var mockState = new Mock<State>();
             _model.SetState(mockState.Object);
             var currentState = _privateModel.GetField("_currentState");
@@ -75,14 +74,14 @@ namespace PPTests
             _model.CreateShape(ShapeType.LINE);
             _model.CreateShape(ShapeType.CIRCLE);
             _model.CreateShape(ShapeType.ARROW);
-            Assert.AreEqual(3,_model.GetShapeCount());
+            Assert.AreEqual(3, _model.GetShapeCount());
         }
 
         //test
         [TestMethod]
         public void ModelTest_DeleteShape()
         {
-            BindingList<Shape> _shapeList = new BindingList<Shape> { new Line(), new Circle()};
+            BindingList<Shape> _shapeList = new BindingList<Shape> { new Line(), new Circle() };
             _model.CreateShape(ShapeType.LINE);
             _model.CreateShape(ShapeType.CIRCLE);
             _model.CreateShape(ShapeType.RECTANGLE);
@@ -164,12 +163,12 @@ namespace PPTests
             _model.CreateShape(ShapeType.LINE);
             _model.GetShapes()[0].SetFirstPoint(point);
             _model.GetShapes()[0].SetSecondPoint(new Point(10, 10));
-            _model.DetectInShape(new Point(4,4));
+            _model.DetectInShape(new Point(4, 4));
 
             var newPoint = new Point(7, 7);
             _model.MoveShape(newPoint);
 
-            Assert.AreEqual(new Point(4,4), _model.GetShapes()[0].GetPoint1());
+            Assert.AreEqual(new Point(4, 4), _model.GetShapes()[0].GetPoint1());
         }
 
         // test
@@ -242,7 +241,7 @@ namespace PPTests
             _model.CreateShape(ShapeType.LINE);
             _model.CreateShape(ShapeType.CIRCLE);
             _model.CreateShape(ShapeType.RECTANGLE);
-            foreach(var shape in _model.GetShapes())
+            foreach (var shape in _model.GetShapes())
             {
                 shape.IsShapeSelected = true;
             }
@@ -268,11 +267,11 @@ namespace PPTests
         [TestMethod]
         public void ModelTest_ResizeCanvas()
         {
-            _privateModel.SetField("_canvasWidth",100);
+            _privateModel.SetField("_canvasWidth", 100);
 
-            _privateModel.SetField("_shapesList", new BindingList<Shape> { new Line(new Point(10,10), new Point(20,20)), new Circle(new Point(10, 10), new Point(20, 20)), new PowerPoint.Rectangle(new Point(10, 10), new Point(20, 20)) });
+            _privateModel.SetField("_shapesList", new BindingList<Shape> { new Line(new Point(10, 10), new Point(20, 20)), new Circle(new Point(10, 10), new Point(20, 20)), new PowerPoint.Rectangle(new Point(10, 10), new Point(20, 20)) });
             _model.ResizeCanvas(20, 100);
-            Assert.AreEqual(new Point(2, 2),_model.GetShapes()[0].GetPoint1());
+            Assert.AreEqual(new Point(2, 2), _model.GetShapes()[0].GetPoint1());
             Assert.AreEqual(new Point(4, 4), _model.GetShapes()[0].GetPoint2());
         }
 
@@ -280,7 +279,7 @@ namespace PPTests
         [TestMethod]
         public void ModelTest_GetState()
         {
-            _privateModel.SetField("_currentState",new PowerPoint.IState.PointState());
+            _privateModel.SetField("_currentState", new PowerPoint.IState.PointState());
             Assert.AreEqual(Model.ModelState.Normal, _model.GetState());
         }
 
@@ -300,7 +299,7 @@ namespace PPTests
             var mockShape = new Mock<Shape>();
             _privateModel.SetField("_shapesList", new BindingList<Shape>() { mockShape.Object });
 
-            _model.MoveShapeByBias(new Size(10,10),0);
+            _model.MoveShapeByBias(new Size(10, 10), 0);
             mockShape.Verify(s => s.MoveShapeByBias(It.IsAny<Size>()), Times.Once);
         }
 
@@ -311,12 +310,15 @@ namespace PPTests
             var mockCommand = new Mock<CommandManager>();
 
             _privateModel.SetField("_commandManager", mockCommand.Object);
-            _model.HandleMoveShape(0,new Size(1,1));
+            _model.HandleMoveShape(0, new Size(1, 1));
             mockCommand.Verify(s => s.Execute(It.IsAny<MoveCommand>()), Times.Once);
             _model.HandleCreateShape(new Circle());
             mockCommand.Verify(s => s.Execute(It.IsAny<AddCommand>()), Times.Once);
             _model.HandleDrawShape(new Circle());
             mockCommand.Verify(s => s.Execute(It.IsAny<DrawingCommand>()), Times.Once);
+            _model.HandleResizeShape(new Point(1, 1));
+            mockCommand.Verify(s => s.Execute(It.IsAny<ResizeCommand>()), Times.Once);
+
         }
 
         //test
@@ -339,8 +341,8 @@ namespace PPTests
         {
             var mockShape = new Mock<Shape>();
             _privateModel.SetField("_shapesList", new BindingList<Shape>() { mockShape.Object });
-            _model.InsertShape(new Circle(new Point(1,1), new Point(2,2)), 0);
-            Assert.AreEqual(new Point(1,1) , _model.GetShapes()[0].GetPoint1());
+            _model.InsertShape(new Circle(new Point(1, 1), new Point(2, 2)), 0);
+            Assert.AreEqual(new Point(1, 1), _model.GetShapes()[0].GetPoint1());
         }
 
         //test
@@ -353,6 +355,13 @@ namespace PPTests
             mockModel.Object._selectShapeIndex = 0;
             mockModel.Object.MouseUp(new Point(1, 1));
             mockModel.Verify(m => m.HandleMoveShape(0, It.IsAny<Size>()), Times.Once);
+
+            mockModel.Setup(m => m.GetState()).Returns(Model.ModelState.Resize);
+            mockModel.Object.MouseUp(new Point(1, 1));
+            mockModel.Verify(m => m.HandleResizeShape(It.IsAny<Point>()), Times.Once);
+
+
+
         }
     }
 }

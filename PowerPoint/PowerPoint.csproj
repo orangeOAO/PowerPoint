@@ -53,12 +53,18 @@
     <Compile Include="Circle.cs" />
     <Compile Include="Command\AddCommand.cs" />
     <Compile Include="Command\CommandManager.cs" />
+    <Compile Include="Command\ResizeCommand.cs" />
     <Compile Include="Command\Commands.cs" />
     <Compile Include="Command\DeleteCommand.cs" />
     <Compile Include="Command\DrawingCommand.cs" />
     <Compile Include="Command\MoveCommand.cs" />
-    <Compile Include="Command\ResizeCommand.cs" />
     <Compile Include="Constant.cs" />
+    <Compile Include="CoordinateInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CoordinateInputDialog.Designer.cs">
+      <DependentUpon>CoordinateInputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Factory.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -83,6 +89,9 @@
     <Compile Include="State\ResizeState.cs" />
     <Compile Include="State\SelectState.cs" />
     <Compile Include="State\State.cs" />
+    <EmbeddedResource Include="CoordinateInputDialog.resx">
+      <DependentUpon>CoordinateInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>

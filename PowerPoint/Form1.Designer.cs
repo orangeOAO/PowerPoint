@@ -256,9 +256,9 @@ namespace PowerPoint
             // 
             this._comboBox1.FormattingEnabled = true;
             this._comboBox1.Items.AddRange(new object[] {
+            "圓形",
             "線",
-            "矩形",
-            "圓形"});
+            "矩形"});
             this._comboBox1.Location = new System.Drawing.Point(131, 34);
             this._comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this._comboBox1.Name = "_comboBox1";

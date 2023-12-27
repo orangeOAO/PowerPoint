@@ -27,6 +27,8 @@ namespace PowerPoint
         private int _canvasWidth;
         private Point _lastPoint;
         private Point _startPoint;
+        private Point _point1;
+        private Point _point2;
         Shape _hint;
         private Point _firstPoint = new Point(0, 0);
         public enum ModelState
@@ -65,11 +67,19 @@ namespace PowerPoint
         //CreateShape
         public virtual void CreateShape(ShapeType shapeType)
         {
+            _factory.SetPoint(_point1, _point2);
             var shape = _factory.CreateShape(shapeType);
             _shapesList.Add(shape);
             HandleCreateShape(shape);
             NotifyModelChanged();
 
+        }
+
+        //SetPoint
+        public virtual void SetShapePoint(Point point1, Point point2)
+        {
+            _point1 = point1;
+            _point2 = point2;
         }
 
         //回傳目前的ShapesList
@@ -245,18 +255,19 @@ namespace PowerPoint
         }
 
         //setResizePoint
-        private void SetResizePoint(Shape shape, Point point)
+        public void SetResizePoint(int index, Point point)
         {
-            shape.SetResizeShapePoint(point);
+            _shapesList[index].SetResizeShapePoint(point);
+            NotifyModelChanged();
         }
 
         //ResizeShape
         public virtual void ResizeShape(Point mousePoint)
         {
-            foreach (var shape in _shapesList)
+            for(int i = 0; i < _shapesList.Count; i++)
             {
-                SetResizePoint(shape, mousePoint);
-                NotifyModelChanged();
+                _shapesList[i].SetResizeShapePoint(mousePoint);
+                SetResizePoint(i, mousePoint);
             }
         }
 
@@ -309,6 +320,13 @@ namespace PowerPoint
             _commandManager.Execute(new DrawingCommand(this, shape, _shapesList.Count - 1));
         }
 
+        //handle
+        public virtual void HandleResizeShape(Point upPoint)
+        {
+            _commandManager.Execute(new ResizeCommand(this, _selectShapeIndex, upPoint, _startPoint));
+
+        }
+
         ////set
         public void SetUndoRedoHistory(bool isUndo, bool isRedo)
         {
@@ -347,6 +365,10 @@ namespace PowerPoint
             {
                 Size bias = new Size(_lastPoint.X - _startPoint.X, _lastPoint.Y - _startPoint.Y);
                 HandleMoveShape(_selectShapeIndex, bias);
+            }
+            else if (GetState() == ModelState.Resize && _selectShapeIndex != -1)
+            {
+                HandleResizeShape(point);
             }
         }
 

@@ -150,6 +150,12 @@ namespace PowerPoint.ShowModel
             _model.CreateShape(type);
         }
 
+        //SetPoint
+        public void SetShapePoint(Point point1, Point point2)
+        {
+            _model.SetShapePoint(point1, point2);
+        }
+
         //handle
         public void HandleButtonClick(int index)
         {

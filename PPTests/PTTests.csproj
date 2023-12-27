@@ -70,6 +70,7 @@
     <Compile Include="DrawingCommand.cs" />
     <Compile Include="modelTest.cs" />
     <Compile Include="MoveCommand.cs" />
+    <Compile Include="ResizeCommand.cs" />
     <Compile Include="ShapeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowModelTest.cs" />

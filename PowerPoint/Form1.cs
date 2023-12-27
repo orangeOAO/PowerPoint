@@ -90,9 +90,22 @@ namespace PowerPoint
         //按下新增
         private void Button1Click(object sender, EventArgs e)
         {
-            _showModel.InsertShape((ShapeType)(_comboBox1.SelectedIndex));
+            
+            using (var dialog = new CoordinateInputDialog())
+            {
+                // 显示对话框并检查返回结果
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _showModel.SetShapePoint(dialog.TopLeft, dialog.DownRight);
+                    _showModel.InsertShape((ShapeType)(_comboBox1.SelectedIndex));
+                }
+                else
+                {
+
+                }
+            }
         }
-        
+
         //HandlePress
         public void HandleCanvasPressed(object sender, System.Windows.Forms.MouseEventArgs e)
         {

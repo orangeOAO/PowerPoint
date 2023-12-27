@@ -8,3 +8,4 @@ C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\Power
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\WindowsFormsApp1.exe
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\PowerPoint.csproj.AssemblyReference.cache
+C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\obj\Debug\PowerPoint.CoordinateInputDialog.resources
