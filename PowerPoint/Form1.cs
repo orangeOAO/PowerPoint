@@ -16,7 +16,7 @@ namespace PowerPoint
 {
     public partial class Form1 : Form
     {
-
+        private List<KeyValuePair<Button, Panel>> _pageList;
         public Form1(Model model)
         {
             _model = model;
@@ -24,7 +24,7 @@ namespace PowerPoint
             _showModel._modelChanged += HandleModelChanged;
             _showModel._cursorChanged += SetCursor;
             _showModel._undoRedoHistoryChanged += HandleUndoRedoButton;
-
+            _pageList = new List<KeyValuePair<Button, Panel>>();
             
             InitializeComponent();
             InitializeDataGridView();
@@ -50,11 +50,14 @@ namespace PowerPoint
         //initializeForm
         private void InitializePanel()
         {
+            
+            KeyValuePair<_page1,_Drawingpanel>
+            _pageList.Add(Key_Drawingpanel);
             _Drawingpanel.MouseDown += HandleCanvasPressed;
             _Drawingpanel.MouseUp += HandleCanvasReleased;
             _Drawingpanel.MouseMove += HandleCanvasMoved;
             _Drawingpanel.Paint += HandleCanvasPaint;
-            _buttonTemporary1.Paint += HandleCanvasPaintOnButton;
+            _page1.Paint += HandleCanvasPaintOnButton;
             splitContainerLeft.Panel1.Resize += (sender, e) => HandleContainerResize();
             splitContainerLeft.Resize += (sender, e) => HandleContainerResize();
             splitContainerRight.Panel1.Resize += (sender, args) => HandleContainerResize();
@@ -64,8 +67,8 @@ namespace PowerPoint
         /// handle resize
         public void HandleContainerResize()
         {
-            _buttonTemporary1.Width = splitContainerLeft.Panel1.Width - Constant.EIGHT;
-            _buttonTemporary1.Height = (int)(_buttonTemporary1.Width * Constant.RATIO);
+            _page1.Width = splitContainerLeft.Panel1.Width - Constant.EIGHT;
+            _page1.Height = (int)(_page1.Width * Constant.RATIO);
             _Drawingpanel.Width = splitContainerRight.Panel1.Width - Constant.EIGHT;
             _Drawingpanel.Height = (int)(_Drawingpanel.Width * Constant.RATIO);
             _showModel.ResizeCanvas(_Drawingpanel.Width, _Drawingpanel.Height);
@@ -140,8 +143,8 @@ namespace PowerPoint
         //button
         public void HandleCanvasPaintOnButton(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            float scaleX = (float)_buttonTemporary1.Width / _Drawingpanel.Width;
-            float scaleY = (float)_buttonTemporary1.Height / _Drawingpanel.Height;
+            float scaleX = (float)_page1.Width / _Drawingpanel.Width;
+            float scaleY = (float)_page1.Height / _Drawingpanel.Height;
             float scale = Math.Min(scaleX, scaleY);
             Matrix array = new Matrix();
             array.Scale(scale, scale);
@@ -210,6 +213,10 @@ namespace PowerPoint
                 _showModel.DeleteSelectShape();
             }
         }
-        
+
+        private void _addPage_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

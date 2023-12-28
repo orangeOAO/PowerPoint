@@ -40,10 +40,11 @@ namespace PowerPoint
             this._lineButton = new WindowPowerPoint.BindingToolStripButton();
             this._rectangleButton = new WindowPowerPoint.BindingToolStripButton();
             this._selectButton = new WindowPowerPoint.BindingToolStripButton();
+            this._addPage = new System.Windows.Forms.ToolStripButton();
             this._undoButton = new System.Windows.Forms.ToolStripButton();
             this._redoButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainerLeft = new System.Windows.Forms.SplitContainer();
-            this._buttonTemporary1 = new System.Windows.Forms.Button();
+            this._page1 = new System.Windows.Forms.Button();
             this._dataGridView2 = new System.Windows.Forms.DataGridView();
             this.splitContainerRight = new System.Windows.Forms.SplitContainer();
             this._Drawingpanel = new PowerPoint.Panel2();
@@ -103,6 +104,7 @@ namespace PowerPoint
             this._lineButton,
             this._rectangleButton,
             this._selectButton,
+            this._addPage,
             this._undoButton,
             this._redoButton});
             this._toolStrip1.Location = new System.Drawing.Point(0, 27);
@@ -151,6 +153,16 @@ namespace PowerPoint
             this._selectButton.ToolTipText = "↗";
             this._selectButton.Click += new System.EventHandler(this.ClickSelectButton);
             // 
+            // _addPage
+            // 
+            this._addPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._addPage.Image = ((System.Drawing.Image)(resources.GetObject("_addPage.Image")));
+            this._addPage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._addPage.Name = "_addPage";
+            this._addPage.Size = new System.Drawing.Size(29, 23);
+            this._addPage.Text = "+";
+            this._addPage.Click += new System.EventHandler(this._addPage_Click);
+            // 
             // _undoButton
             // 
             this._undoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -181,7 +193,7 @@ namespace PowerPoint
             // 
             // splitContainerLeft.Panel1
             // 
-            this.splitContainerLeft.Panel1.Controls.Add(this._buttonTemporary1);
+            this.splitContainerLeft.Panel1.Controls.Add(this._page1);
             this.splitContainerLeft.Panel1.Controls.Add(this._dataGridView2);
             // 
             // splitContainerLeft.Panel2
@@ -191,14 +203,14 @@ namespace PowerPoint
             this.splitContainerLeft.SplitterDistance = 171;
             this.splitContainerLeft.TabIndex = 8;
             // 
-            // _buttonTemporary1
+            // _page1
             // 
-            this._buttonTemporary1.Location = new System.Drawing.Point(3, 2);
-            this._buttonTemporary1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this._buttonTemporary1.Name = "_buttonTemporary1";
-            this._buttonTemporary1.Size = new System.Drawing.Size(157, 123);
-            this._buttonTemporary1.TabIndex = 5;
-            this._buttonTemporary1.UseVisualStyleBackColor = true;
+            this._page1.Location = new System.Drawing.Point(3, 2);
+            this._page1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this._page1.Name = "_page1";
+            this._page1.Size = new System.Drawing.Size(157, 123);
+            this._page1.TabIndex = 5;
+            this._page1.UseVisualStyleBackColor = true;
             // 
             // _dataGridView2
             // 
@@ -379,7 +391,7 @@ namespace PowerPoint
         private System.Windows.Forms.ToolStripButton _undoButton;
         private System.Windows.Forms.ToolStripButton _redoButton;
         private System.Windows.Forms.SplitContainer splitContainerLeft;
-        private System.Windows.Forms.Button _buttonTemporary1;
+        private System.Windows.Forms.Button _page1;
         private System.Windows.Forms.DataGridView _dataGridView2;
         private System.Windows.Forms.SplitContainer splitContainerRight;
         private System.Windows.Forms.ComboBox _comboBox1;
@@ -390,6 +402,7 @@ namespace PowerPoint
         private System.Windows.Forms.DataGridViewTextBoxColumn _information;
         private Panel2 _Drawingpanel;
         private System.Windows.Forms.Splitter splitter1;
+        private ToolStripButton _addPage;
     }
 }
 
