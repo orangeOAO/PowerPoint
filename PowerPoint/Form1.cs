@@ -50,14 +50,13 @@ namespace PowerPoint
         //initializeForm
         private void InitializePanel()
         {
-            
-            KeyValuePair<_page1,_Drawingpanel>
-            _pageList.Add(Key_Drawingpanel);
             _Drawingpanel.MouseDown += HandleCanvasPressed;
             _Drawingpanel.MouseUp += HandleCanvasReleased;
             _Drawingpanel.MouseMove += HandleCanvasMoved;
             _Drawingpanel.Paint += HandleCanvasPaint;
             _page1.Paint += HandleCanvasPaintOnButton;
+            _page1.Click += HandleClickPage;
+            _dataGridView2.Controls.Add(_page1);
             splitContainerLeft.Panel1.Resize += (sender, e) => HandleContainerResize();
             splitContainerLeft.Resize += (sender, e) => HandleContainerResize();
             splitContainerRight.Panel1.Resize += (sender, args) => HandleContainerResize();
@@ -67,8 +66,13 @@ namespace PowerPoint
         /// handle resize
         public void HandleContainerResize()
         {
-            _page1.Width = splitContainerLeft.Panel1.Width - Constant.EIGHT;
-            _page1.Height = (int)(_page1.Width * Constant.RATIO);
+            for (int i = 2; i < _dataGridView2.Controls.Count; i++)
+            {
+                _dataGridView2.Controls[i].Width = splitContainerLeft.Panel1.Width - Constant.EIGHT;
+                _dataGridView2.Controls[i].Height = (int)(_page1.Width * Constant.RATIO);
+                _dataGridView2.Controls[i].Location = new Point(_page1.Location.X, (i - 2) * _page1.Height);
+            }
+
             _Drawingpanel.Width = splitContainerRight.Panel1.Width - Constant.EIGHT;
             _Drawingpanel.Height = (int)(_Drawingpanel.Width * Constant.RATIO);
             _showModel.ResizeCanvas(_Drawingpanel.Width, _Drawingpanel.Height);
@@ -93,20 +97,7 @@ namespace PowerPoint
         //按下新增
         private void Button1Click(object sender, EventArgs e)
         {
-            
-            using (var dialog = new CoordinateInputDialog())
-            {
-                // 显示对话框并检查返回结果
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    _showModel.SetShapePoint(dialog.TopLeft, dialog.DownRight);
-                    _showModel.InsertShape((ShapeType)(_comboBox1.SelectedIndex));
-                }
-                else
-                {
-
-                }
-            }
+            _showModel.SetDialogValue(_comboBox1.SelectedIndex);
         }
 
         //HandlePress
@@ -143,8 +134,15 @@ namespace PowerPoint
         //button
         public void HandleCanvasPaintOnButton(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            float scaleX = (float)_page1.Width / _Drawingpanel.Width;
-            float scaleY = (float)_page1.Height / _Drawingpanel.Height;
+            float scaleX = 0;
+            float scaleY = 0;
+            var button = (Button)sender;
+            var index = _dataGridView2.Controls.IndexOf(button);
+            for (int i = 1; i < _dataGridView2.Controls.Count; i++)
+            {
+                scaleX = (float)_dataGridView2.Controls[i].Width / _Drawingpanel.Width;
+                scaleY = (float)_dataGridView2.Controls[i].Height / _Drawingpanel.Height;
+            }
             float scale = Math.Min(scaleX, scaleY);
             Matrix array = new Matrix();
             array.Scale(scale, scale);
@@ -211,12 +209,36 @@ namespace PowerPoint
             if (e.KeyCode == Keys.Delete)
             {
                 _showModel.DeleteSelectShape();
+                //_dataGridView2.Controls.RemoveAt(0);
             }
         }
 
+        //addPage
         private void _addPage_Click(object sender, EventArgs e)
         {
+            Button button = new Button();
+            button.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            var width = _page1.Width;
+            var height = _page1.Height;
+            button.Name = $"page{_showModel.GetPageCount()+1}";
+            button.Size = new Size(width, height);
+            Debug.WriteLine(button.Name);
+            button.Click += HandleClickPage;
+            button.Location = new Point(_page1.Location.X, (4+_page1.Height)*_showModel.GetPageCount());
+            _dataGridView2.Controls.Add(button);
+            _showModel.AddPage();
+        }
 
+        //Page
+        public void HandleClickPage(object sender, EventArgs e)
+        {
+            Invalidate();
+            var button = (Button)sender;
+            var index = _dataGridView2.Controls.IndexOf(button);
+            index -= 2;
+            button.Paint += HandleCanvasPaintOnButton;
+            _showModel.SetPageIndex(index);
+            _dataGridView1.DataSource = _showModel.GetShapes();
         }
     }
 }

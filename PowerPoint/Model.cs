@@ -19,7 +19,8 @@ namespace PowerPoint
         public delegate void ModelChangedEventHandler();
         public delegate void StateChangedEventHandler(State state);
         public event StateChangedEventHandler _stateChanged;
-        private BindingList<Shape> _shapesList = new BindingList<Shape>();
+        //private BindingList<Shape> _shapesList = new BindingList<Shape>();
+        private BindingList<Page> _pagesList = new BindingList<Page>();
         private readonly Factory _factory = new Factory();
         private CommandManager _commandManager;
         private State _currentState;
@@ -38,6 +39,10 @@ namespace PowerPoint
             Select,
             Resize
         }
+        public int _selectPageIndex {
+            get;
+            set;
+        }
         public int _selectShapeIndex {
             get;
             set;
@@ -53,6 +58,8 @@ namespace PowerPoint
             _commandManager._undoRedoHistoryChanged += SetUndoRedoHistory;
             _selectShapeIndex = -1;
             _currentState = new PointState();
+            _pagesList.Add(new Page());
+            _selectPageIndex = 0;
         }
 
         //setState
@@ -69,7 +76,8 @@ namespace PowerPoint
         {
             _factory.SetPoint(_point1, _point2);
             var shape = _factory.CreateShape(shapeType);
-            _shapesList.Add(shape);
+            _pagesList[_selectPageIndex].CreateShapeInPage(shape);
+            //_shapesList.Add(shape);
             HandleCreateShape(shape);
             NotifyModelChanged();
 
@@ -85,13 +93,15 @@ namespace PowerPoint
         //回傳目前的ShapesList
         public virtual BindingList<Shape> GetShapes()
         {
-            return _shapesList;
+            //return _shapesList;
+            return _pagesList[_selectPageIndex].GetShapes();
         }
 
         //DeleteShape
         public virtual void DeleteShapeByUndo(int index)
         {
-            _shapesList.RemoveAt(index);
+            _pagesList[_selectPageIndex].DeleteShapeInPage(index);
+            //_shapesList.RemoveAt(index);
             NotifyModelChanged();
         }
 
@@ -100,8 +110,9 @@ namespace PowerPoint
         {
             if (index != -1)
             {
-                _commandManager.Execute(new DeleteCommand(this, _shapesList[index], index));
-                _shapesList.RemoveAt(index);
+                _commandManager.Execute(new DeleteCommand(this, _pagesList[_selectPageIndex].GetShapes()[index], index));
+                _pagesList[_selectPageIndex].DeleteShapeInPage(index);
+                //_shapesList.RemoveAt(index);
             }
             _selectShapeIndex = -1;
             NotifyModelChanged();
@@ -111,8 +122,9 @@ namespace PowerPoint
         {
             if (_selectShapeIndex != -1)
             {
-                _commandManager.Execute(new DeleteCommand(this, _shapesList[_selectShapeIndex], _selectShapeIndex));
-                _shapesList.RemoveAt(_selectShapeIndex);
+                _commandManager.Execute(new DeleteCommand(this, _pagesList[_selectPageIndex].GetShapes()[_selectShapeIndex], _selectShapeIndex));
+                _pagesList[_selectPageIndex].DeleteShapeInPage(_selectShapeIndex);
+                //_shapesList.RemoveAt(_selectShapeIndex);
                 NotifyModelChanged();
             }
             _selectShapeIndex = -1;
@@ -121,7 +133,8 @@ namespace PowerPoint
         //GetShapeCount
         public virtual int GetShapeCount()
         {
-            return _shapesList.Count;
+            //return _shapesList.Count;
+            return _pagesList[_selectPageIndex].GetShapes().Count;
         }
 
         //Notify
@@ -167,7 +180,9 @@ namespace PowerPoint
             Shape hint = _factory.CreateShape(type);
             hint.SetFirstPoint(_firstPoint);
             hint.SetSecondPoint(point);
-            _shapesList.Add(hint);
+            _pagesList[_selectPageIndex].CreateShapeInPage(hint);
+
+            //_shapesList.Add(hint);
             HandleDrawShape(hint);
             NotifyModelChanged();
         }
@@ -175,7 +190,8 @@ namespace PowerPoint
         //Clear
         public virtual void Clear()
         {
-            _shapesList.Clear();
+            _pagesList.Clear();
+            //_shapesList.Clear();
             ClearSelectBox();
             NotifyModelChanged();
         }
@@ -183,24 +199,33 @@ namespace PowerPoint
         //DrawShape
         public virtual void DrawShape(IGraphics graphics)
         {
-
-            for (int count = _shapesList.Count - 1; count >= 0; count--)
+            for (int count = _pagesList[_selectPageIndex].GetShapes().Count-1; count >= 0; count--)
             {
-                _shapesList[count].Draw(graphics);
+                _pagesList[_selectPageIndex].GetShapes()[count].Draw(graphics);
             }
+            //for (int count = _shapesList.Count - 1; count >= 0; count--)
+            //{
+            //    _shapesList[count].Draw(graphics);
+            //}
         }
 
         //DrawSelected
         public virtual void DrawBox(IGraphics graphics)
         {
-
-            for (int count = _shapesList.Count - 1; count >= 0; count--)
+            for (int count = _pagesList[_selectPageIndex].GetShapes().Count - 1; count >= 0; count--)
             {
                 if (count == _selectShapeIndex)
                 {
-                    _shapesList[count].DrawBox(graphics);
+                    _pagesList[_selectPageIndex].GetShapes()[count].DrawBox(graphics);
                 }
             }
+            //for (int count = _shapesList.Count - 1; count >= 0; count--)
+            //{
+            //    if (count == _selectShapeIndex)
+            //    {
+            //        _shapesList[count].DrawBox(graphics);
+            //    }
+            //}
         }
 
         //DrawHint
@@ -215,12 +240,12 @@ namespace PowerPoint
             _moveShape = false;
             _selectShapeIndex = -1;
             ClearSelectBox();
-            for (int count = _shapesList.Count - 1; count >= 0; count--)
+            for (int count = _pagesList[_selectPageIndex].GetShapes().Count - 1; count >= 0; count--)
             {
-                if (_shapesList[count].GetInShape(mousePoint))
+                if (_pagesList[_selectPageIndex].GetShapes()[count].GetInShape(mousePoint))
                 {
                     _moveShape = true;
-                    _shapesList[count].SetTemporaryPoint();
+                    _pagesList[_selectPageIndex].GetShapes()[count].SetTemporaryPoint();
                     _selectShapeIndex = count;
                     break;
                 }
@@ -230,7 +255,7 @@ namespace PowerPoint
         //ClearBox
         public virtual void ClearSelectBox()
         {
-            foreach (Shape shape in _shapesList)
+            foreach (Shape shape in _pagesList[_selectPageIndex].GetShapes())
             {
                 shape.IsShapeSelected = false;
             }
@@ -242,7 +267,7 @@ namespace PowerPoint
         {
             if (_selectShapeIndex != -1)
             {
-                _shapesList[_selectShapeIndex].MoveCalculate(mousePoint);
+                _pagesList[_selectPageIndex].GetShapes()[_selectShapeIndex].MoveCalculate(mousePoint);
                 NotifyModelChanged();
             }
         }
@@ -250,23 +275,23 @@ namespace PowerPoint
         //MoveShapeByBias
         public virtual void MoveShapeByBias(Size bias, int index)
         {
-            _shapesList[index].MoveShapeByBias(bias);
+            _pagesList[_selectPageIndex].GetShapes()[index].MoveShapeByBias(bias);
             NotifyModelChanged();
         }
 
         //setResizePoint
         public void SetResizePoint(int index, Point point)
         {
-            _shapesList[index].SetResizeShapePoint(point);
+            _pagesList[_selectPageIndex].GetShapes()[index].SetResizeShapePoint(point);
             NotifyModelChanged();
         }
 
         //ResizeShape
         public virtual void ResizeShape(Point mousePoint)
         {
-            for(int i = 0; i < _shapesList.Count; i++)
+            for(int i = 0; i < _pagesList[_selectPageIndex].GetShapes().Count; i++)
             {
-                _shapesList[i].SetResizeShapePoint(mousePoint);
+                _pagesList[_selectPageIndex].GetShapes()[i].SetResizeShapePoint(mousePoint);
                 SetResizePoint(i, mousePoint);
             }
         }
@@ -280,7 +305,7 @@ namespace PowerPoint
         //ChangeCursor
         public virtual bool ChangeToResizeMode(Point mousePoint)
         {
-            foreach (var shape in _shapesList)
+            foreach (var shape in _pagesList[_selectPageIndex].GetShapes())
             {
                 if (GetInResizeShape(shape, mousePoint))
                 {
@@ -293,7 +318,7 @@ namespace PowerPoint
         //ResizeCanvas
         public virtual void ResizeCanvas(int width, int height)
         {
-            foreach (var shape in _shapesList)
+            foreach (var shape in _pagesList[_selectPageIndex].GetShapes())
             {
                 shape.Scale((float)width / (float)_canvasWidth);
             }
@@ -305,7 +330,7 @@ namespace PowerPoint
         //// handle
         public virtual void HandleCreateShape(Shape shape)
         {
-            _commandManager.Execute(new AddCommand(this, shape, _shapesList.Count - 1));
+            _commandManager.Execute(new AddCommand(this, shape, _pagesList[_selectPageIndex].GetShapes().Count - 1));
         }
 
         //// handle
@@ -317,7 +342,7 @@ namespace PowerPoint
         //// handle
         public virtual void HandleDrawShape(Shape shape)
         {
-            _commandManager.Execute(new DrawingCommand(this, shape, _shapesList.Count - 1));
+            _commandManager.Execute(new DrawingCommand(this, shape, _pagesList[_selectPageIndex].GetShapes().Count - 1));
         }
 
         //handle
@@ -351,7 +376,7 @@ namespace PowerPoint
         //insert
         public virtual void InsertShape(Shape shape, int index)
         {
-            _shapesList.Insert(index, shape);
+            _pagesList[_selectPageIndex].GetShapes().Insert(index, shape);
             NotifyModelChanged();
         }
 
@@ -396,6 +421,25 @@ namespace PowerPoint
         public virtual Model.ModelState GetState()
         {
             return _currentState.GetState();
+        }
+
+        //addPage
+        public void AddPage()
+        {
+            _pagesList.Add(new Page());
+        }
+
+        //SetPageIndex
+        public void SetPageIndex(int index)
+        {
+            _selectPageIndex = index;
+            Debug.Print($"{index}");
+        }
+
+        //GetPageCount
+        public int GetPageCount()
+        {
+            return _pagesList.Count;
         }
     }
 }

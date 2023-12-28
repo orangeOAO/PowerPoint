@@ -232,5 +232,40 @@ namespace PowerPoint.ShowModel
                 return _isButtonChecked[(int)ShapeType.ARROW];
             }
         }
+        //dialog
+        public void SetDialogValue(int index)
+        {
+            using (var dialog = new CoordinateInputDialog())
+            {
+                // 显示对话框并检查返回结果
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    SetShapePoint(dialog.TopLeft, dialog.DownRight);
+                    InsertShape((ShapeType)(index));
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        //addPage
+        public void AddPage()
+        {
+            _model.AddPage();
+        }
+
+        //SetPageIndex
+        public void SetPageIndex(int index)
+        {
+            _model.SetPageIndex(index);
+        }
+
+        //GetPageCount
+        public int GetPageCount()
+        {
+            return _model.GetPageCount();
+        }
     }
 }
