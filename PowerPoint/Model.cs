@@ -289,11 +289,11 @@ namespace PowerPoint
         //ResizeShape
         public virtual void ResizeShape(Point mousePoint)
         {
-            for(int i = 0; i < _pagesList[_selectPageIndex].GetShapes().Count; i++)
-            {
-                _pagesList[_selectPageIndex].GetShapes()[i].SetResizeShapePoint(mousePoint);
-                SetResizePoint(i, mousePoint);
-            }
+            //for(int i = 0; i < _pagesList[_selectPageIndex].GetShapes().Count; i++)
+            //{
+            _pagesList[_selectPageIndex].GetShapes()[_selectShapeIndex].SetResizeShapePoint(mousePoint);
+            SetResizePoint(_selectShapeIndex, mousePoint);
+            //}
         }
 
         //GetInResizeShape
@@ -429,17 +429,34 @@ namespace PowerPoint
             _pagesList.Add(new Page());
         }
 
+        //deletePage
+        public void DeletePage()
+        {
+            _pagesList.RemoveAt(_selectPageIndex);
+            if (_selectPageIndex >= _pagesList.Count())
+            {
+                _selectPageIndex--;
+            }
+            SetPageIndex(_selectPageIndex);
+        }
+
         //SetPageIndex
         public void SetPageIndex(int index)
         {
             _selectPageIndex = index;
-            Debug.Print($"{index}");
+            Debug.Print($"Page = {index}");
         }
 
         //GetPageCount
         public int GetPageCount()
         {
             return _pagesList.Count;
+        }
+
+        //getPage
+        public int GetClickPage()
+        {
+            return _selectPageIndex;
         }
     }
 }

@@ -25,7 +25,8 @@ namespace PowerPoint
         //DrawCircle
         public override void Draw(IGraphics graphics)
         {
-            graphics.DrawCircle(Pens.Brown, _point1, _point2);
+            Pen pen = new Pen(Color.BlueViolet, 2);
+            graphics.DrawCircle(pen, _point1, _point2);
         }
 
         //DrawCircleBox

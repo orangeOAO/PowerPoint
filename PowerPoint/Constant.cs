@@ -33,5 +33,7 @@ namespace PowerPoint
         public const int THREE_THOUSAND = 3000;
         public const int NEGATIVE_THREE_THOUSAND = -3000;
         public const double RATIO = (NINE / SIXTEEN);
+        public const int BUTTON_WIDTH = 120;
+        public const int BUTTON_HEIGHT = 67;
     }
 }

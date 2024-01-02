@@ -168,7 +168,7 @@ namespace PowerPoint.ShowModel
             {
                 _isButtonChecked[i] = false;
             }
-            Debug.WriteLine(index);
+            //Debug.WriteLine(index);
             _isButtonChecked[index] = true;
             HandlePropertyChanged();
         }
@@ -256,6 +256,12 @@ namespace PowerPoint.ShowModel
             _model.AddPage();
         }
 
+        //deletePage
+        public void DeletePage()
+        {
+            _model.DeletePage();
+        }
+
         //SetPageIndex
         public void SetPageIndex(int index)
         {
@@ -266,6 +272,12 @@ namespace PowerPoint.ShowModel
         public int GetPageCount()
         {
             return _model.GetPageCount();
+        }
+
+        //getPage
+        public int GetPageIndex()
+        {
+            return _model.GetClickPage();
         }
     }
 }
