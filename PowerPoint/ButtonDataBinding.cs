@@ -10,17 +10,22 @@ namespace WindowPowerPoint
             _bindingContext = new BindingContext();
         }
 
-        public ControlBindingsCollection DataBindings {
-            get {
+        public ControlBindingsCollection DataBindings 
+        {
+            get 
+            {
                 return _dataBindings;
             }
         }
 
-        public BindingContext BindingContext {
-            get {
+        public BindingContext BindingContext 
+        {
+            get 
+            {
                 return _bindingContext;
             }
-            set {
+            set 
+            {
                 _bindingContext = value;
             }
         }

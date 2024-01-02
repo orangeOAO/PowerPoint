@@ -14,7 +14,6 @@ namespace PowerPoint.Command
             _redoHistory = new List<Command>();
         }
 
-
         /// ex
         /// </summary>
         /// <param name="command"></param>
@@ -27,7 +26,6 @@ namespace PowerPoint.Command
                 _undoRedoHistoryChanged(true, false);
             }
         }
-
 
         /// undo
         /// </summary>
@@ -46,7 +44,6 @@ namespace PowerPoint.Command
             }
         }
 
-
         /// undo
         /// </summary>
         public virtual void Undo()
@@ -62,7 +59,6 @@ namespace PowerPoint.Command
             _commandHistory.RemoveAt(_commandHistory.Count - 1);
             HandleUndo();
         }
-
 
         /// handle
         /// </summary>
@@ -81,7 +77,6 @@ namespace PowerPoint.Command
             }
         }
 
-
         /// redo
         /// </summary>
         public virtual void Redo()
@@ -90,7 +85,6 @@ namespace PowerPoint.Command
             {
                 return;
             }
-
             var command = _redoHistory[_redoHistory.Count - 1];
             command.Execute();
             _commandHistory.Add(command);

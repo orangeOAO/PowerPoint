@@ -1,84 +1,390 @@
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\modelTest.cs Line 151
-FeatureEnvyDetector	WARN	 PTTests.modelTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 25
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\modelTest.cs Line 164
-FeatureEnvyDetector	WARN	 PTTests.modelTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 25
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\modelTest.cs Line 176
-FeatureEnvyDetector	WARN	 PTTests.modelTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShowModelTest.cs Line 144
-FeatureEnvyDetector	WARN	 PowerPoint.ShowModel.Tests.PresentationModelTests envy Moq.Mock<T>
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		Object
-FeatureEnvyDetector	WARN		Object
-FeatureEnvyDetector	WARN		Setup
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShowModelTest.cs Line 158
-FeatureEnvyDetector	WARN	 PowerPoint.ShowModel.Tests.PresentationModelTests envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShowModelTest.cs Line 179
-FeatureEnvyDetector	WARN	 PowerPoint.ShowModel.Tests.PresentationModelTests envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShowModelTest.cs Line 190
-FeatureEnvyDetector	WARN	 PowerPoint.ShowModel.Tests.PresentationModelTests envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 32
-FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 40
-FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 48
-FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 56
-FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 64
-FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
 FeatureEnvyDetector	WARN	Finded Feature Envy
-FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PTTests\ShapeTest.cs Line 72
-FeatureEnvyDetector	WARN	 PTTests.ShapeTest envy Moq.It
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
 FeatureEnvyDetector	WARN	use list:
-FeatureEnvyDetector	WARN		IsAny
-FeatureEnvyDetector	WARN		IsAny
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\DrawingCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.DrawingCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Command\AddCommand.cs Line 23
+FeatureEnvyDetector	WARN	 PowerPoint.Command.AddCommand envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		GetShapes
+FeatureEnvyDetector	WARN		DeleteShapeByUndo
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 35
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\SelectState.cs Line 41
+FeatureEnvyDetector	WARN	 PowerPoint.IState.SelectState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		MoveShape
+FeatureEnvyDetector	WARN		ChangeToResizeMode
+FeatureEnvyDetector	WARN	Finded Feature Envy
+FeatureEnvyDetector	WARN	at C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\State\NormalState.cs Line 26
+FeatureEnvyDetector	WARN	 PowerPoint.IState.PointState envy PowerPoint.Model
+FeatureEnvyDetector	WARN	use list:
+FeatureEnvyDetector	WARN		SetState
+FeatureEnvyDetector	WARN		_selectShapeIndex

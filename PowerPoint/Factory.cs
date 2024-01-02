@@ -9,8 +9,8 @@ namespace PowerPoint
 {
     public class Factory
     {
-        private int _canvasWidth=450;
-        private int _canvasHeight=450;
+        private int _canvasWidth = Constant.CANVAS_WIDTH;
+        private int _canvasHeight = Constant.CANVAS_HEIGHT;
         private Point _point1;
         private Point _point2;
 
@@ -18,9 +18,9 @@ namespace PowerPoint
         //Factory
         public Shape CreateShape(ShapeType shapeType)
         {   
-            if(_point1 == new Point(0,0) || _point2 == new Point(0, 0))
+            if (_point1 == new Point(0,0) || _point2 == new Point(0, 0))
             {
-                _point1= new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
+                _point1 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
                 _point2 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
             }
             switch (shapeType)

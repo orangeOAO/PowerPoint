@@ -16,6 +16,7 @@ namespace PowerPoint
         public const string CIRCLE = "圓形";
         public const string CHECKED = "Checked";
         public const string DELETE_BUTTON = "_deleteShape";
+        public const string IS_SHAPE_SELECTED = "IsShapeSelected";
         public const string IS_LINE_CHECKED = "IsLineButtonChecked";
         public const string IS_RECTANGLE_CHECKED = "IsRectangleButtonChecked";
         public const string IS_CIRCLE_CHECKED = "IsCircleButtonChecked";
@@ -35,5 +36,7 @@ namespace PowerPoint
         public const double RATIO = (NINE / SIXTEEN);
         public const int BUTTON_WIDTH = 120;
         public const int BUTTON_HEIGHT = 67;
+        public const int CANVAS_WIDTH = 450;
+        public const int CANVAS_HEIGHT = 450;
     }
 }

@@ -14,10 +14,8 @@ namespace PowerPoint
     public partial class CoordinateInputDialog : Form
     {
         public delegate void TextChangedEventHandler();
-        public event TextChangedEventHandler _textChange;
         public CoordinateInputDialog()
         {
-            
             InitializeComponent();
             _leftTopX.TextChanged += DetectEnableOK;
             _leftTopY.TextChanged += DetectEnableOK;
@@ -27,7 +25,7 @@ namespace PowerPoint
 
         }
 
-        //public Point TopLeft => new Point(
+        //public Point _topLeft => new Point(
         //    int.Parse(_leftTopX.Text),
         //    int.Parse(_leftTopY.Text)
         //);
@@ -36,9 +34,16 @@ namespace PowerPoint
         //    int.Parse(_rightDownX.Text),
         //    int.Parse(_rightDownY.Text)
         //);
-        public Point TopLeft;
-        public Point DownRight;
-
+        public Point _topLeft
+        {
+            get;
+            set;
+        }
+        public Point _downRight
+        {
+            get;
+            set;
+        }
         //ok
         private void _okButton_Click(object sender, EventArgs e)
         {
@@ -46,12 +51,8 @@ namespace PowerPoint
             Debug.Assert(int.TryParse(_leftTopY.Text, out int leftY));
             Debug.Assert(int.TryParse(_rightDownX.Text, out int rightX));
             Debug.Assert(int.TryParse(_rightDownY.Text, out int rightY));
-            TopLeft.X = leftX;
-            TopLeft.Y = leftY;
-            DownRight.X = rightX;
-            DownRight.Y = rightY;
-
-
+            _topLeft = new Point(leftX, leftY);
+            _downRight = new Point(rightX, rightY);
         }
 
         //district
@@ -62,15 +63,14 @@ namespace PowerPoint
                 int.TryParse(_rightDownX.Text, out int rightX) &&
                 int.TryParse(_rightDownY.Text, out int rightY))
             {
-                TopLeft = new Point(leftX, leftY);
-                DownRight = new Point(rightX, rightY);
+                _topLeft = new Point(leftX, leftY);
+                _downRight = new Point(rightX, rightY);
                 _okButton.Enabled = true;
             }
             else
             {
                 _okButton.Enabled = false;
             }
-            Debug.WriteLine("OAO");
         }
     }
 }

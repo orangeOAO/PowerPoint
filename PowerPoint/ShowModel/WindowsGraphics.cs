@@ -83,7 +83,6 @@ namespace PowerPoint.ShowModel
             DrawResizeHandles(_graphics,width,height,fix1,fix2);
         }
 
-
         //DrawCircleBox
         public void DrawCircleSelectBox(Point point1, Point point2)
         {

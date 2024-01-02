@@ -74,7 +74,8 @@
     </Compile>
     <Compile Include="IGraphics.cs" />
     <Compile Include="Line.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\ModelPartial.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Panel2.cs">
       <SubType>Component</SubType>

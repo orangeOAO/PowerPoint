@@ -25,7 +25,7 @@ namespace PowerPoint
         //DrawLine
         public override void Draw(IGraphics graphics)
         {
-            Pen pen = new Pen(Color.Gray, 2);
+            Pen pen = new Pen(Color.Gray, Constant.TWO);
             graphics.DrawLine(pen, _point1, _point2);
         }
 

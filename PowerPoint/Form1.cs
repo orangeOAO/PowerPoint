@@ -37,16 +37,15 @@ namespace PowerPoint
             this.KeyPreview = true;
         }
 
-
         //initializeDatagridview
         private void InitializeDataGridView()
         {
             _dataGridView1.DataSource = _showModel.GetShapes();
-            _dataGridView1.Columns["IsShapeSelected"].Visible = false;
+            _dataGridView1.Columns[Constant.IS_SHAPE_SELECTED].Visible = false;
             _dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SetDataGridView1CellContentClick);
             _dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             _dataGridView1.Columns[Constant.TWO].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //splitContainerLeft.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            //_splitContainerLeft.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
         }
 
         //handlepage
@@ -56,7 +55,7 @@ namespace PowerPoint
             button.BackColor = System.Drawing.SystemColors.ControlLightLight;
             button.Click += HandleClickPage;
             button.Location = new Point(0, 0);
-            button.Size = new Size(120, 67);
+            button.Size = new Size(Constant.BUTTON_WIDTH, Constant.BUTTON_HEIGHT);
             //button.Paint += HandleCanvasPaintOnButton;
             _pagePanel.Controls.Add(button);
         }
@@ -64,16 +63,16 @@ namespace PowerPoint
         //initializeForm
         private void InitializePanel()
         {
-            _Drawingpanel.MouseDown += HandleCanvasPressed;
-            _Drawingpanel.MouseUp += HandleCanvasReleased;
-            _Drawingpanel.MouseMove += HandleCanvasMoved;
-            _Drawingpanel.Paint += HandleCanvasPaint;
+            _drawPanel.MouseDown += HandleCanvasPressed;
+            _drawPanel.MouseUp += HandleCanvasReleased;
+            _drawPanel.MouseMove += HandleCanvasMoved;
+            _drawPanel.Paint += HandleCanvasPaint;
             _showModel.SetPageIndex(0);
             HandleContainerResize();
-            splitContainerLeft.Panel1.Resize += (sender, e) => HandleContainerResize();
-            splitContainerLeft.Resize += (sender, e) => HandleContainerResize();
-            splitContainerRight.Panel1.Resize += (sender, args) => HandleContainerResize();
-            splitContainerRight.Resize += (sender, args) => HandleContainerResize();
+            _splitContainerLeft.Panel1.Resize += (sender, e) => HandleContainerResize();
+            _splitContainerLeft.Resize += (sender, e) => HandleContainerResize();
+            _splitContainerRight.Panel1.Resize += (sender, args) => HandleContainerResize();
+            _splitContainerRight.Resize += (sender, args) => HandleContainerResize();
         }
 
         /// handle resize
@@ -81,14 +80,14 @@ namespace PowerPoint
         {
             for (int i = 0; i < _pagePanel.Controls.Count; i++)
             {
-                _pagePanel.Controls[i].Width = splitContainerLeft.Panel1.Width - Constant.EIGHT;
+                _pagePanel.Controls[i].Width = _splitContainerLeft.Panel1.Width - Constant.EIGHT;
                 _pagePanel.Controls[i].Height = (int)(_pagePanel.Controls[i].Width * Constant.RATIO);
-                _pagePanel.Controls[i].Location = new Point(0,i* _pagePanel.Controls[i].Height);
+                _pagePanel.Controls[i].Location = new Point(0,i * _pagePanel.Controls[i].Height);
             }
 
-            _Drawingpanel.Width = splitContainerRight.Panel1.Width - Constant.EIGHT;
-            _Drawingpanel.Height = (int)(_Drawingpanel.Width * Constant.RATIO);
-            _showModel.ResizeCanvas(_Drawingpanel.Width, _Drawingpanel.Height);
+            _drawPanel.Width = _splitContainerRight.Panel1.Width - Constant.EIGHT;
+            _drawPanel.Height = (int)(_drawPanel.Width * Constant.RATIO);
+            _showModel.ResizeCanvas(_drawPanel.Width, _drawPanel.Height);
         }
 
         //binding
@@ -153,8 +152,8 @@ namespace PowerPoint
             var index = _pagePanel.Controls.IndexOf(button);
             for (int i = 0; i < _pagePanel.Controls.Count; i++)
             {
-                scaleX = (float)_pagePanel.Controls[i].Width / _Drawingpanel.Width;
-                scaleY = (float)_pagePanel.Controls[i].Height / _Drawingpanel.Height;
+                scaleX = (float)_pagePanel.Controls[i].Width / _drawPanel.Width;
+                scaleY = (float)_pagePanel.Controls[i].Height / _drawPanel.Height;
             }
             float scale = Math.Min(scaleX, scaleY);
             Matrix array = new Matrix();
@@ -181,8 +180,6 @@ namespace PowerPoint
         {
             _showModel.Redo();
         }
-
-
 
         //CreateCell
         private void SetDataGridView1CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -236,23 +233,23 @@ namespace PowerPoint
         //brief
         private void GenerateBrief()
         {
-            Bitmap _brief = new Bitmap(this._Drawingpanel.Width, this._Drawingpanel.Height);
-            this._Drawingpanel.DrawToBitmap(_brief, new System.Drawing.Rectangle(0, 0, this._Drawingpanel.Width, this._Drawingpanel.Height));
+            Bitmap brief = new Bitmap(this._drawPanel.Width, this._drawPanel.Height);
+            this._drawPanel.DrawToBitmap(brief, new System.Drawing.Rectangle(0, 0, this._drawPanel.Width, this._drawPanel.Height));
             // slide1.Image = new Bitmap(_brief, slide1.Size);
-            _pagePanel.Controls[_showModel.GetPageIndex()].BackgroundImage = new Bitmap(_brief, _pagePanel.Controls[_showModel.GetPageIndex()].Size);
+            _pagePanel.Controls[_showModel.GetPageIndex()].BackgroundImage = new Bitmap(brief, _pagePanel.Controls[_showModel.GetPageIndex()].Size);
         }
 
         //addPage
-        private void _addPage_Click(object sender, EventArgs e)
+        private void _addPageClick(object sender, EventArgs e)
         {
             Button button = new Button();
             button.BackColor = System.Drawing.SystemColors.ControlLightLight;
             var width = _pagePanel.Controls[0].Width;
             var height = _pagePanel.Controls[0].Height;
-            button.Name = $"page{_showModel.GetPageCount()+1}";
+            //button.Name = $"page{_showModel.GetPageCount()+1}";
             button.Size = new Size(width, height);
             button.Click += HandleClickPage;
-            button.Location = new Point(0, (height) *_showModel.GetPageCount());
+            button.Location = new Point(0, (height) * _showModel.GetPageCount());
             _pagePanel.Controls.Add(button);
             _showModel.AddPage();
         }
@@ -260,8 +257,6 @@ namespace PowerPoint
         //Page
         public void HandleClickPage(object sender, EventArgs e)
         {
-            
-            
             var button = (Button)sender;
             var index = _pagePanel.Controls.IndexOf(button);
             _showModel.SetPageIndex(index);

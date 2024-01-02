@@ -9,14 +9,12 @@
             _index = index;
         }
 
-
         /// execute
         /// </summary>
         public void Execute()
         {
             _model.InsertShape(_shape, _index);
         }
-
 
         /// unexecute
         /// </summary>

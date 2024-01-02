@@ -47,7 +47,8 @@ namespace PowerPoint
             return Constant.LEFT + point.X + Constant.COMMA + point.Y + Constant.RIGHT;
         }
 
-        public virtual bool IsShapeSelected {
+        public virtual bool IsShapeSelected 
+        {
             get;
             set;
         }
@@ -94,8 +95,6 @@ namespace PowerPoint
         public virtual void DrawBox(IGraphics graphics)
         {
         }
-
-        
 
         private Point _pointSelect;
 

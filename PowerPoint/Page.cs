@@ -34,7 +34,5 @@ namespace PowerPoint
         {
             return _shapesList;
         }
-
-
     }
 }

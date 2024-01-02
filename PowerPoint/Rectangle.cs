@@ -25,7 +25,7 @@ namespace PowerPoint
         //DrawRectangle
         public override void Draw(IGraphics graphics)
         {
-            Pen pen = new Pen(Color.Brown, 2);
+            Pen pen = new Pen(Color.Brown, Constant.TWO);
             graphics.DrawRectangle(pen, _point1, _point2);
         }
 

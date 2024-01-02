@@ -11,14 +11,12 @@ namespace PowerPoint.Command
             _bias = bias;
         }
 
-
         /// execute
         /// </summary>
         public void Execute()
         {
             _model.MoveShapeByBias(_bias, _index);
         }
-
 
         /// unexecute
         /// </summary>

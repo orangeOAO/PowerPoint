@@ -9,12 +9,12 @@ namespace PowerPoint.Command
 {
     public class ResizeCommand : Command
     {
-        public ResizeCommand(Model model, int index, Point point, Point startpoint)
+        public ResizeCommand(Model model, int index, Point point, Point startPoint)
         {
             _model = model;
             _index = index;
             _resizePoint = point;
-            _originPoint = startpoint;
+            _originPoint = startPoint;
         }
 
         //exe

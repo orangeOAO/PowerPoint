@@ -21,10 +21,7 @@ namespace PowerPoint.ShowModel
         public delegate void CursorChangedEventHandler(Cursor cursor);
         public event CursorChangedEventHandler _cursorChanged;
         readonly bool[] _isButtonChecked = { false, false, false, false };
-
-
         readonly Model _model;
-
         public ShowModel(Model model)
         {
             _model = model;
@@ -192,7 +189,6 @@ namespace PowerPoint.ShowModel
             _model.Undo();
         }
 
-
         /// redo
         /// </summary>
         public void Redo()
@@ -201,37 +197,46 @@ namespace PowerPoint.ShowModel
         }
 
         /// handle
-        public void HandleUndoRedoHistoryChanged(bool isundo, bool isredo)
+        public void HandleUndoRedoHistoryChanged(bool isUndo, bool isRedo)
         {
             if (_undoRedoHistoryChanged != null)
             {
-                _undoRedoHistoryChanged(isundo, isredo);
+                _undoRedoHistoryChanged(isUndo, isRedo);
             }
         }
 
-        public bool IsLineButtonChecked {
-            get {
+        public bool IsLineButtonChecked 
+        {
+            get 
+            {
                 return _isButtonChecked[(int)ShapeType.LINE];
             }
         }
 
-        public bool IsRectangleButtonChecked {
-            get {
+        public bool IsRectangleButtonChecked 
+        {
+            get 
+            {
                 return _isButtonChecked[(int)ShapeType.RECTANGLE];
             }
         }
 
-        public bool IsCircleButtonChecked {
-            get {
+        public bool IsCircleButtonChecked 
+        {
+            get 
+            {
                 return _isButtonChecked[(int)ShapeType.CIRCLE];
             }
         }
 
-        public bool IsMouseButtonChecked {
-            get {
+        public bool IsMouseButtonChecked 
+        {
+            get 
+            {
                 return _isButtonChecked[(int)ShapeType.ARROW];
             }
         }
+
         //dialog
         public void SetDialogValue(int index)
         {
@@ -240,7 +245,7 @@ namespace PowerPoint.ShowModel
                 // 显示对话框并检查返回结果
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    SetShapePoint(dialog.TopLeft, dialog.DownRight);
+                    SetShapePoint(dialog._topLeft, dialog._downRight);
                     InsertShape((ShapeType)(index));
                 }
                 else

@@ -9,14 +9,12 @@
             _index = index;
         }
 
-
         /// execute
         /// </summary>
         public void Execute()
         {
             _model.DeleteShapeByUndo(_index);
         }
-
 
         /// unexecute
         /// </summary>
