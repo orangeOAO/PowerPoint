@@ -263,5 +263,32 @@ namespace PPTests
             _showModel.Redo();
             _mockModel.Verify(m => m.Redo(), Times.Once);
         }
+
+        //zz
+        [TestMethod]
+        public void pageTest()
+        {
+            //Mock mockShowModel = new Mock<ShowModel>();
+            //mockShowModel.Setups()
+            _showModel.AddPage();
+            _showModel.DeletePage();
+            _showModel.SetPageIndex(0);
+            _showModel.GetPageCount();
+            _showModel.GetPageIndex();
+            _showModel.SetShapePoint(new Point(1, 1), new Point(2, 2));
+            _showModel.InsertPage(0);
+            Assert.AreEqual(_showModel.GetPageCount(), 2);
+        }
+
+        ////ss
+        //[TestMethod]
+        //public void dialogTest()
+        //{
+        //    var dialog = new CoordinateInputDialog();
+        //    _privateShowModel.SetField("_dialogTest", true);
+        //    _showModel.SetDialogValue(0, dialog);
+        //    dialog.Close();
+        //    dialog.Dispose();
+        //}
     }
 }

@@ -213,6 +213,9 @@ namespace PPTests
         [TestMethod]
         public void ModelTest_ResizeShape()
         {
+            _model.AddPage();
+            _model._selectPageIndex = 0;
+            _model._selectShapeIndex = 0;
             _model.CreateShape(ShapeType.LINE);
             _model.GetShapes()[0].SetFirstPoint(new Point(3, 5));
             _model.GetShapes()[0].SetSecondPoint(new Point(30, 30));
@@ -256,9 +259,9 @@ namespace PPTests
         [TestMethod]
         public void ModelTest_Clear()
         {
+            _model.AddPage();
+            _model._selectPageIndex = 0;
             _model.CreateShape(ShapeType.LINE);
-            _model.CreateShape(ShapeType.CIRCLE);
-            _model.CreateShape(ShapeType.RECTANGLE);
             _model.Clear();
             Assert.AreEqual(0, _model.GetShapeCount());
         }
@@ -268,8 +271,9 @@ namespace PPTests
         public void ModelTest_ResizeCanvas()
         {
             _privateModel.SetField("_canvasWidth", 100);
-
-            _privateModel.SetField("_shapesList", new BindingList<Shape> { new Line(new Point(10, 10), new Point(20, 20)), new Circle(new Point(10, 10), new Point(20, 20)), new PowerPoint.Rectangle(new Point(10, 10), new Point(20, 20)) });
+            var page = new Page();
+            page.CreateShapeInPage(new Line(new Point(10, 10), new Point(20, 20)));
+            _privateModel.SetField("_pagesList", new BindingList<Page>() { page });
             _model.ResizeCanvas(20, 100);
             Assert.AreEqual(new Point(2, 2), _model.GetShapes()[0].GetPoint1());
             Assert.AreEqual(new Point(4, 4), _model.GetShapes()[0].GetPoint2());
@@ -287,9 +291,12 @@ namespace PPTests
         [TestMethod]
         public void ModelTest_DeleteByUndo()
         {
-            _privateModel.SetField("_shapesList", new BindingList<Shape>() { new Circle(), new PowerPoint.Rectangle() });
+            var mockShape = new Mock<Shape>();
+            var page = new Page();
+            page.CreateShapeInPage(mockShape.Object);
+            _privateModel.SetField("_pagesList", new BindingList<Page>() { page });
             _model.DeleteShapeByUndo(0);
-            Assert.AreEqual(_model.GetShapes().Count, 1);
+            Assert.AreEqual(_model.GetShapes().Count, 0);
         }
 
         //test
@@ -297,7 +304,9 @@ namespace PPTests
         public void ModelTest_MoveShapeByBias()
         {
             var mockShape = new Mock<Shape>();
-            _privateModel.SetField("_shapesList", new BindingList<Shape>() { mockShape.Object });
+            var page = new Page();
+            page.CreateShapeInPage(mockShape.Object);
+            _privateModel.SetField("_pagesList", new BindingList<Page>() { page });
 
             _model.MoveShapeByBias(new Size(10, 10), 0);
             mockShape.Verify(s => s.MoveShapeByBias(It.IsAny<Size>()), Times.Once);
@@ -339,8 +348,10 @@ namespace PPTests
         [TestMethod]
         public void ModelTest_Insert()
         {
+
             var mockShape = new Mock<Shape>();
-            _privateModel.SetField("_shapesList", new BindingList<Shape>() { mockShape.Object });
+            var page = new Page();
+            _privateModel.SetField("_pagesList", new BindingList<Page>() { page });
             _model.InsertShape(new Circle(new Point(1, 1), new Point(2, 2)), 0);
             Assert.AreEqual(new Point(1, 1), _model.GetShapes()[0].GetPoint1());
         }
@@ -360,6 +371,34 @@ namespace PPTests
             mockModel.Object.MouseUp(new Point(1, 1));
             mockModel.Verify(m => m.HandleResizeShape(It.IsAny<Point>()), Times.Once);
 
+
+
+        }
+
+        //test
+        [TestMethod]
+        public void ModelTest_resizeCanvas()
+        {
+            var page = new Page();
+            page.CreateShapeInPage(new Shape());
+            _privateModel.SetField("_pagesList", new BindingList<Page>() { page  });
+            _model._selectPageIndex = 0;
+            _model.ResizeCanvas(100, 100);
+
+
+        }
+
+        //page
+        [TestMethod]
+        public void ModelTest_pageSelect()
+        {
+            var page = new Page();
+            page.CreateShapeInPage(new Shape());
+            _privateModel.SetField("_pagesList", new BindingList<Page>() { page , page});
+            _model._selectPageIndex = 1;
+            _model.DeletePage();
+            _model.SetShapePoint(new Point(1,1), new Point(2,2));
+            _model.InsertPage(0);
 
 
         }

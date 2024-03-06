@@ -112,6 +112,12 @@ namespace PowerPoint
             _pagesList.Add(new Page());
         }
 
+        //insertPage
+        public void InsertPage(int index)
+        {
+            _pagesList.Insert(index, new Page());
+        }
+
         //deletePage
         public void DeletePage()
         {

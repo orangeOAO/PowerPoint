@@ -18,11 +18,6 @@ namespace PowerPoint
         //Factory
         public Shape CreateShape(ShapeType shapeType)
         {   
-            if (_point1 == new Point(0,0) || _point2 == new Point(0, 0))
-            {
-                _point1 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
-                _point2 = new Point(_random.Next(0, _canvasWidth), _random.Next(0, _canvasHeight));
-            }
             switch (shapeType)
             {
                 case ShapeType.LINE:

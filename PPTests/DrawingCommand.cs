@@ -33,11 +33,11 @@ namespace PowerPoint.Command.Tests
 
         // test
         [TestMethod]
-        public void UnexecuteRemovesLastShape()
+        public void UndoRemovesLastShape()
         {
             _mockModel.Setup(m => m.GetShapes()).Returns(new BindingList<Shape>() { _shape });
 
-            _drawCommand.Unexecute();
+            _drawCommand.Undo();
 
             _mockModel.Verify(m => m.DeleteShapeByUndo(It.IsAny<int>()), Times.Once);
         }

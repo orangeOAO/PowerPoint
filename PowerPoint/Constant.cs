@@ -21,6 +21,11 @@ namespace PowerPoint
         public const string IS_RECTANGLE_CHECKED = "IsRectangleButtonChecked";
         public const string IS_CIRCLE_CHECKED = "IsCircleButtonChecked";
         public const string IS_MOUSE_CHECKED = "IsMouseButtonChecked";
+        public const string TOP_LEFT_X = "_leftTopX";
+        public const string TOP_LEFT_Y = "_leftTopY";
+        public const string BOTTOM_RIGHT_X = "_rightDownX";
+        public const string BOTTOM_RIGHT_Y = "_rightDownY";
+        public const string BUTTON_NAME = "OAO";
         public const int SELECT_BUTTON = 3;
         public const int RESIZE_HANDLE_SIZE = 6;
         public const int HALF_HANDLE_SIZE = RESIZE_HANDLE_SIZE / 2;
@@ -34,6 +39,10 @@ namespace PowerPoint
         public const int THREE_THOUSAND = 3000;
         public const int NEGATIVE_THREE_THOUSAND = -3000;
         public const double RATIO = (NINE / SIXTEEN);
+        public const int FOUR_HUNDRED = 400;
+        public const int ONE_HUNDRED = 100;
+        public const int TWO_HUNDRED = 200;
+        public const int FIVE_HUNDRED = 500;
         public const int BUTTON_WIDTH = 120;
         public const int BUTTON_HEIGHT = 67;
         public const int CANVAS_WIDTH = 450;

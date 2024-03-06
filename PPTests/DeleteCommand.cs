@@ -32,9 +32,9 @@ namespace PowerPoint.Command.Tests
 
         // test
         [TestMethod]
-        public void UnexecuteInsertsShapeAtGivenIndex()
+        public void UndoInsertsShapeAtGivenIndex()
         {
-            _removeCommand.Unexecute();
+            _removeCommand.Undo();
 
             _mockModel.Verify(m => m.InsertShape(_shape, _index), Times.Once);
         }

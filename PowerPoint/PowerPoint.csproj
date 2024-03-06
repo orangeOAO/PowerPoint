@@ -7,7 +7,7 @@
     <ProjectGuid>{823B4B17-9FD4-4F81-B91C-2E034AF75F49}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>PowerPoint</RootNamespace>
-    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <AssemblyName>PowerPoint</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -59,10 +59,10 @@
     <Compile Include="Command\DrawingCommand.cs" />
     <Compile Include="Command\MoveCommand.cs" />
     <Compile Include="Constant.cs" />
-    <Compile Include="CoordinateInputDialog.cs">
+    <Compile Include="CoordinateInputDialog\CoordinateInputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CoordinateInputDialog.Designer.cs">
+    <Compile Include="CoordinateInputDialog\CoordinateInputDialog.Designer.cs">
       <DependentUpon>CoordinateInputDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Factory.cs" />
@@ -91,7 +91,7 @@
     <Compile Include="State\ResizeState.cs" />
     <Compile Include="State\SelectState.cs" />
     <Compile Include="State\State.cs" />
-    <EmbeddedResource Include="CoordinateInputDialog.resx">
+    <EmbeddedResource Include="CoordinateInputDialog\CoordinateInputDialog.resx">
       <DependentUpon>CoordinateInputDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">

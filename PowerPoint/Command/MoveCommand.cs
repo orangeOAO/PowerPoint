@@ -18,9 +18,9 @@ namespace PowerPoint.Command
             _model.MoveShapeByBias(_bias, _index);
         }
 
-        /// unexecute
+        /// Undo
         /// </summary>
-        public void Unexecute()
+        public void Undo()
         {
             _model.MoveShapeByBias(new Size(-1 * _bias.Width, -1 * _bias.Height), _index);
         }

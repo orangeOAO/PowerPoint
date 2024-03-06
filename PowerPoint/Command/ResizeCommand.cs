@@ -24,7 +24,7 @@ namespace PowerPoint.Command
         }
 
         //unexe
-        public void Unexecute()
+        public void Undo()
         {
             _model.SetResizePoint(_index, _originPoint);
         }

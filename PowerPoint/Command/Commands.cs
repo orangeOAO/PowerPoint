@@ -7,8 +7,8 @@
         /// </summary>
         void Execute();
 
-        /// unexecute
+        /// Undo
         /// </summary>
-        void Unexecute();
+        void Undo();
     }
 }

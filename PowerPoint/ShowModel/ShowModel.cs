@@ -20,6 +20,7 @@ namespace PowerPoint.ShowModel
         public event CommandManager.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
         public delegate void CursorChangedEventHandler(Cursor cursor);
         public event CursorChangedEventHandler _cursorChanged;
+        private bool _dialogTest;
         readonly bool[] _isButtonChecked = { false, false, false, false };
         readonly Model _model;
         public ShowModel(Model model)
@@ -29,6 +30,7 @@ namespace PowerPoint.ShowModel
             _model._undoRedoHistoryChanged += HandleUndoRedoHistoryChanged;
             _model._stateChanged += HandleStateChange;
             _isButtonChecked[(int)ShapeType.ARROW] = true;
+            _dialogTest = false;
         }
 
         //SetState
@@ -238,20 +240,13 @@ namespace PowerPoint.ShowModel
         }
 
         //dialog
-        public void SetDialogValue(int index)
+        public virtual void SetDialogValue(int index, CoordinateInputDialog dialog)
         {
-            using (var dialog = new CoordinateInputDialog())
+            // 显示对话框并检查返回结果
+            if (dialog.ShowDialog() == DialogResult.OK || _dialogTest)
             {
-                // 显示对话框并检查返回结果
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    SetShapePoint(dialog._topLeft, dialog._downRight);
-                    InsertShape((ShapeType)(index));
-                }
-                else
-                {
-
-                }
+                SetShapePoint(dialog._topLeft, dialog._downRight);
+                InsertShape((ShapeType)(index));
             }
         }
 
@@ -259,6 +254,12 @@ namespace PowerPoint.ShowModel
         public void AddPage()
         {
             _model.AddPage();
+        }
+
+        //insertPage
+        public void InsertPage(int index)
+        {
+            _model.InsertPage(index);
         }
 
         //deletePage

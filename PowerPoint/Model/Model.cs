@@ -195,6 +195,7 @@ namespace PowerPoint
         public virtual void Clear()
         {
             _pagesList.Clear();
+            _pagesList.Add(new Page());
             //_shapesList.Clear();
             ClearSelectBox();
             NotifyModelChanged();
@@ -322,10 +323,14 @@ namespace PowerPoint
         //ResizeCanvas
         public virtual void ResizeCanvas(int width, int height)
         {
-            foreach (var shape in _pagesList[_selectPageIndex].GetShapes())
+            for (int i = 0; i < _pagesList.Count(); i++)
             {
-                shape.Scale((float)width / (float)_canvasWidth);
+                foreach (var shape in _pagesList[i].GetShapes())
+                {
+                    shape.Scale((float)width / (float)_canvasWidth);
+                }
             }
+            
             _canvasWidth = width;
             _factory.ResizeCanvas(width, height);
             NotifyModelChanged();

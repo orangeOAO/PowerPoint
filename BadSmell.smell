@@ -188,262 +188,6 @@
           <Reviews>
             <Smell>
               <Id>1</Id>
-              <SmellType>Unsuitable naming(名不符實)-Unexecute(unexecute)</SmellType>
-              <HashCode>UnsuitableNaming.AddCommand.Unexecute.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>AddCommand.cs</File>
-              <Line>21</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>2</Id>
-              <SmellType>ICS(函式-2)</SmellType>
-              <HashCode>Method2.AddCommand.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>AddCommand.cs</File>
-              <Line>21</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-2) 每個函式表示一種操作，因此一律使用動詞做為第一個單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>3</Id>
-              <SmellType>Unsuitable naming(名不符實)-Unexecute(unexecute)</SmellType>
-              <HashCode>UnsuitableNaming.Command.Unexecute.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>Commands.cs</File>
-              <Line>12</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>4</Id>
-              <SmellType>ICS(函式-2)</SmellType>
-              <HashCode>Method2.Command.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>Commands.cs</File>
-              <Line>12</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-2) 每個函式表示一種操作，因此一律使用動詞做為第一個單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>5</Id>
-              <SmellType>Unsuitable naming(名不符實)-Unexecute(unexecute)</SmellType>
-              <HashCode>UnsuitableNaming.DeleteCommand.Unexecute.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>DeleteCommand.cs</File>
-              <Line>21</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>6</Id>
-              <SmellType>ICS(函式-2)</SmellType>
-              <HashCode>Method2.DeleteCommand.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>DeleteCommand.cs</File>
-              <Line>21</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-2) 每個函式表示一種操作，因此一律使用動詞做為第一個單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>7</Id>
-              <SmellType>Unsuitable naming(名不符實)-Unexecute(unexecute)</SmellType>
-              <HashCode>UnsuitableNaming.DrawingCommand.Unexecute.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>DrawingCommand.cs</File>
-              <Line>21</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>8</Id>
-              <SmellType>ICS(函式-2)</SmellType>
-              <HashCode>Method2.DrawingCommand.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>DrawingCommand.cs</File>
-              <Line>21</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-2) 每個函式表示一種操作，因此一律使用動詞做為第一個單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>9</Id>
-              <SmellType>Unsuitable naming(名不符實)-Unexecute(unexecute)</SmellType>
-              <HashCode>UnsuitableNaming.MoveCommand.Unexecute.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>MoveCommand.cs</File>
-              <Line>23</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>10</Id>
-              <SmellType>ICS(函式-2)</SmellType>
-              <HashCode>Method2.MoveCommand.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>MoveCommand.cs</File>
-              <Line>23</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-2) 每個函式表示一種操作，因此一律使用動詞做為第一個單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>11</Id>
-              <SmellType>Unsuitable naming(名不符實)-Unexecute(unexecute)</SmellType>
-              <HashCode>UnsuitableNaming.ResizeCommand.Unexecute.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>ResizeCommand.cs</File>
-              <Line>27</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>12</Id>
-              <SmellType>ICS(函式-2)</SmellType>
-              <HashCode>Method2.ResizeCommand.Unexecute</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>ResizeCommand.cs</File>
-              <Line>27</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-2) 每個函式表示一種操作，因此一律使用動詞做為第一個單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>13</Id>
-              <SmellType>ICS(函式-1)</SmellType>
-              <HashCode>Method1.CoordinateInputDialog._okButton_Click</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>CoordinateInputDialog.cs</File>
-              <Line>48</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-1) 函式命名一律大寫開始，若由多個單字組成，每個單字的第一個字母大寫，其餘小寫。不以底線區隔單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>14</Id>
-              <SmellType>ICS(函式-2)</SmellType>
-              <HashCode>Method2.CoordinateInputDialog._okButton_Click</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>CoordinateInputDialog.cs</File>
-              <Line>48</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-2) 每個函式表示一種操作，因此一律使用動詞做為第一個單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>15</Id>
-              <SmellType>ICS(函式-1)</SmellType>
-              <HashCode>Method1.CoordinateInputDialog.DetectEnableOK</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>CoordinateInputDialog.cs</File>
-              <Line>59</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-1) 函式命名一律大寫開始，若由多個單字組成，每個單字的第一個字母大寫，其餘小寫。不以底線區隔單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>16</Id>
-              <SmellType>ICS(函式-1)</SmellType>
-              <HashCode>Method1.Form1._addPageClick</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>PowerPoint</Project>
-              <File>Form1.cs</File>
-              <Line>243</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment>ICS(函式-1) 函式命名一律大寫開始，若由多個單字組成，每個單字的第一個字母大寫，其餘小寫。不以底線區隔單字</Comment>
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>17</Id>
               <SmellType>Long parameter list(過長參數列)</SmellType>
               <HashCode>LongParameterList.WindowsGraphics.DrawResizeHandles.Graphics graphics;float width;float height;float x1;float x2;</HashCode>
               <Severity>Warning</Severity>
@@ -459,7 +203,23 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>18</Id>
+              <Id>2</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>227 目前物件 PowerPoint.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.ShowModel.ShowModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.ShowModel.ShowModel.GetPageIndex() 以及 PowerPoint.ShowModel.ShowModel.GetPageCount()</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>PowerPoint</Project>
+              <File>C:\Users\orange\Desktop\class\112_1\DesignWindows\PPT\PowerPoint\Form1.cs</File>
+              <Line>227</Line>
+              <StartLine>226</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>227</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 PowerPoint.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.ShowModel.ShowModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.ShowModel.ShowModel.GetPageIndex() 以及 PowerPoint.ShowModel.ShowModel.GetPageCount()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>3</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
               <HashCode>23 目前物件 PowerPoint.Command.DrawingCommand，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.GetShapes() 以及 PowerPoint.Model.DeleteShapeByUndo(int)</HashCode>
               <Severity>Warning</Severity>
@@ -475,7 +235,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>19</Id>
+              <Id>4</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
               <HashCode>23 目前物件 PowerPoint.Command.AddCommand，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.GetShapes() 以及 PowerPoint.Model.DeleteShapeByUndo(int)</HashCode>
               <Severity>Warning</Severity>
@@ -491,7 +251,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>20</Id>
+              <Id>5</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
               <HashCode>35 目前物件 PowerPoint.IState.SelectState，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.SetState(PowerPoint.IState.State) 以及 PowerPoint.Model.ChangeToResizeMode(System.Drawing.Point)</HashCode>
               <Severity>Warning</Severity>
@@ -507,7 +267,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>21</Id>
+              <Id>6</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
               <HashCode>41 目前物件 PowerPoint.IState.SelectState，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.MoveShape(System.Drawing.Point) 以及 PowerPoint.Model.ChangeToResizeMode(System.Drawing.Point)</HashCode>
               <Severity>Warning</Severity>
@@ -523,7 +283,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>22</Id>
+              <Id>7</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
               <HashCode>26 目前物件 PowerPoint.IState.PointState，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.SetState(PowerPoint.IState.State) 以及 PowerPoint.Model._selectShapeIndex</HashCode>
               <Severity>Warning</Severity>
@@ -542,15 +302,12 @@
           <HashCodeIgnoreList />
           <HashCodeRequestIgnoreList>
             <string>LongParameterList.WindowsGraphics.DrawResizeHandles.Graphics graphics;float width;float height;float x1;float x2;</string>
-            <string>UnsuitableNaming.AddCommand.Unexecute.Unexecute</string>
-            <string>Method2.AddCommand.Unexecute</string>
-            <string>UnsuitableNaming.Command.Unexecute.Unexecute</string>
-            <string>Method2.Command.Unexecute</string>
-            <string>UnsuitableNaming.DeleteCommand.Unexecute.Unexecute</string>
-            <string>Method2.DeleteCommand.Unexecute</string>
-            <string>UnsuitableNaming.DrawingCommand.Unexecute.Unexecute</string>
-            <string>Method2.DrawingCommand.Unexecute</string>
-            <string>UnsuitableNaming.MoveCommand.Unexecute.Unexecute</string>
+            <string>23 目前物件 PowerPoint.Command.DrawingCommand，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.GetShapes() 以及 PowerPoint.Model.DeleteShapeByUndo(int)</string>
+            <string>23 目前物件 PowerPoint.Command.AddCommand，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.GetShapes() 以及 PowerPoint.Model.DeleteShapeByUndo(int)</string>
+            <string>35 目前物件 PowerPoint.IState.SelectState，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.SetState(PowerPoint.IState.State) 以及 PowerPoint.Model.ChangeToResizeMode(System.Drawing.Point)</string>
+            <string>41 目前物件 PowerPoint.IState.SelectState，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.MoveShape(System.Drawing.Point) 以及 PowerPoint.Model.ChangeToResizeMode(System.Drawing.Point)</string>
+            <string>26 目前物件 PowerPoint.IState.PointState，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.Model.SetState(PowerPoint.IState.State) 以及 PowerPoint.Model._selectShapeIndex</string>
+            <string>227 目前物件 PowerPoint.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 PowerPoint.ShowModel.ShowModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：PowerPoint.ShowModel.ShowModel.GetPageIndex() 以及 PowerPoint.ShowModel.ShowModel.GetPageCount()</string>
           </HashCodeRequestIgnoreList>
           <AnalysisFileManager>
             <AnalysisFiles>
@@ -605,12 +362,12 @@
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
-                <RelativePath>CoordinateInputDialog.cs</RelativePath>
+                <RelativePath>CoordinateInputDialog\CoordinateInputDialog.cs</RelativePath>
                 <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
-                <RelativePath>CoordinateInputDialog.Designer.cs</RelativePath>
+                <RelativePath>CoordinateInputDialog\CoordinateInputDialog.Designer.cs</RelativePath>
                 <ProjectName>PowerPoint</ProjectName>
                 <AnalysisFileType>Designer</AnalysisFileType>
               </AnalysisFile>
@@ -726,7 +483,7 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>2923</ProductionLoc>
+          <ProductionLoc>2936</ProductionLoc>
           <TestLoc>0</TestLoc>
         </CodeReview>
       </Data>

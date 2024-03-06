@@ -16,9 +16,9 @@
             _model.DeleteShapeByUndo(_index);
         }
 
-        /// unexecute
+        /// Undo
         /// </summary>
-        public void Unexecute()
+        public void Undo()
         {
             _model.InsertShape(_shape, _index);
         }

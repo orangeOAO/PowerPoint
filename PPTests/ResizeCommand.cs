@@ -41,9 +41,9 @@ namespace PowerPoint.Command.Tests
 
         // test
         [TestMethod]
-        public void UnexecuteResizeShapeAtGivenIndex()
+        public void UndoResizeShapeAtGivenIndex()
         {
-            _resizeCommand.Unexecute();
+            _resizeCommand.Undo();
         }
     }
 }
